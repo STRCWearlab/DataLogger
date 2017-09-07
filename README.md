@@ -1,7 +1,7 @@
-# DataLogger
-DataLogger is an high reliability Android application for multidevice multimodal mobile data acquisition and annotation. This application has been developed for research purpose. The usage of this application in research and publications must be acknowledged by citing the following publication:
+# DataLogger 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[1] Mathias Ciliberto, Francisco Javier Ordoñez Morales, Hristijan Gjoreski, Daniel Roggen, Sami Mekki, Stefan Valentin. *"High reliability Android application for multidevice multimodal mobile data acquisition and annotation"* in ACM Conference on Embedded Networked Sensor Systems (Sensys), 2017.
+DataLogger is an high reliability Android application for multidevice multimodal mobile data acquisition and annotation.
 
 ## Functionalities
 Application features:
@@ -12,13 +12,18 @@ Application features:
   - Networks connectivity data, as network cells and WiFi networks;
   - Battery level
   - Microphone audio
+  - Google activity recognition labels
   Every sensors can be configured in the settings to enable/disable it, set the sampling frequency, the remote upload of its data.
-- Remote upload of data
+- Remote upload of data (`PHP_upload_script.txt` contains the PHP code for the server)
 - Multidevice (master-slaves) configuration
 - Bluetooth connection for synchronization among device of time and status (logging/no logging, labels, sublabels)
 - Autostart at boot/reboot
 - Background logging using persistent notification
 - Logging of data on files (a new file is created at regular interval to reduce data loss)
+
+## Requirement
+- Android, minimum SDK 19.
+- Google play service (for Google activity recognition)
 
 ## Configuration required 
 ### Settings' password
@@ -41,3 +46,32 @@ It can be configured for collecting data on multiple devices synchronously, in a
 
 ### Remote upload
 The remote upload functionality requires to set up the remote address for the upload. The address is in `string.xml` in the value folder.
+
+## LICENSE
+This application has been developed for research purpose and release under MIT License. The usage of this application in research and publications must be acknowledged by citing the following publication:
+
+[1] Mathias Ciliberto, Francisco Javier Ordoñez Morales, Hristijan Gjoreski, Daniel Roggen, Sami Mekki, Stefan Valentin. *"High reliability Android application for multidevice multimodal mobile data acquisition and annotation"* in ACM Conference on Embedded Networked Sensor Systems (Sensys), 2017.
+
+```
+The MIT License
+
+Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
+Hristijan Gjoreski, Daniel Roggen
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```
