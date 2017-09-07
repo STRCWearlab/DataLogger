@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
+  ~ Hristijan Gjoreski, Daniel Roggen
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of
+  ~ this software and associated documentation files (the "Software"), to deal in
+  ~ the Software without restriction, including without limitation the rights to use,
+  ~ copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+  ~ Software, and to permit persons to whom the Software is furnished to do so,
+  ~ subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+  ~ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+  ~ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+  ~ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+
+<resources>
+    <string-array name="activities_names_array">
+        <item>Still</item>
+        <item>Walk</item>
+        <item>Run</item>
+        <item>Bike</item>
+        <item>Car</item>
+        <item>Bus</item>
+        <item>Train</item>
+        <item>Subway</item>
+    </string-array>
+
+    <string-array name="body_positions_names_array">
+        <item>Stand</item>
+        <item>Sit</item>
+    </string-array>
+
+    <integer-array name="activities_icons_array">
+        <item>@drawable/ic_act_stl_128</item>
+        <item>@drawable/ic_act_wlk_128</item>
+        <item>@drawable/ic_act_run_128</item>
+        <item>@drawable/ic_act_bik_128</item>
+        <item>@drawable/ic_act_car_128</item>
+        <item>@drawable/ic_act_bus_128</item>
+        <item>@drawable/ic_act_trn_128</item>
+        <item>@drawable/ic_act_sbw_128</item>
+    </integer-array>
+
+    <integer-array name="body_positions_on_icons_array">
+        <item>@drawable/ic_pos_std_on_128</item>
+        <item>@drawable/ic_pos_sit_on_128</item>
+    </integer-array>
+
+    <integer-array name="body_positions_off_icons_array">
+        <item>@drawable/ic_pos_std_off_128</item>
+        <item>@drawable/ic_pos_sit_off_128</item>
+    </integer-array>
+
+    <string-array name="flaggable_events">
+        <item>@string/forgot_to_start</item>
+        <item>@string/forgot_to_stop</item>
+        <item>@string/wrong_activity_label</item>
+        <item>@string/wrong_posture_label</item>
+        <item>@string/wrong_location_label</item>
+        <item>@string/other</item>
+    </string-array>
+</resources>

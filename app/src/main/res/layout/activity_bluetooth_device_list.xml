@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
+  ~ Hristijan Gjoreski, Daniel Roggen
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of
+  ~ this software and associated documentation files (the "Software"), to deal in
+  ~ the Software without restriction, including without limitation the rights to use,
+  ~ copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+  ~ Software, and to permit persons to whom the Software is furnished to do so,
+  ~ subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+  ~ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+  ~ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+  ~ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/title_paired_bluetooth_devices"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:textColor="@color/colorPrimary"
+        android:paddingLeft="5dp"
+        android:text="@string/ui_dialog_bluetooth_title_paired_devices"
+        android:visibility="gone"
+        />
+
+    <ListView
+        android:id="@+id/paired_bluetooth_devices"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#ffffff"
+        android:textColor="#000000"
+        android:stackFromBottom="true"
+        />
+
+    <TextView
+        android:id="@+id/title_new_bluetooth_devices"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:background="#ffffff"
+        android:textColor="@color/colorPrimary"
+        android:visibility="gone"
+        />
+
+    <ListView
+        android:id="@+id/new_bluetooth_devices"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:background="#ffffff"
+        android:textColor="#000000"
+        android:stackFromBottom="true"
+        />
+
+    <Button
+        android:id="@+id/button_scan_bluetooth_devices"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:layout_height="wrap_content"
+        android:text="@string/ui_dialog_bluetooth_button_scan"
+        />
+</LinearLayout>

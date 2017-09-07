@@ -1,0 +1,82 @@
+<!--
+  ~ Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
+  ~ Hristijan Gjoreski, Daniel Roggen
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of
+  ~ this software and associated documentation files (the "Software"), to deal in
+  ~ the Software without restriction, including without limitation the rights to use,
+  ~ copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+  ~ Software, and to permit persons to whom the Software is furnished to do so,
+  ~ subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+  ~ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+  ~ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+  ~ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_general_default_user_name"
+        android:inputType="textCapWords"
+        android:key="@string/pref_general_key_user_name"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_general_title_user_name" />
+
+    <ListPreference
+        android:defaultValue="3"
+        android:entries="@array/pref_general_list_device_location"
+        android:entryValues="@array/pref_general_list_device_location_values"
+        android:key="@string/pref_general_key_device_location"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_general_title_device_location" />
+
+    <PreferenceCategory android:title="@string/pref_general_category_HAR_API" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_general_key_enabled_HAR_API"
+            android:title="@string/pref_general_title_enabled_HAR_API" />
+
+        <EditTextPreference
+            android:dependency="@string/pref_general_key_enabled_HAR_API"
+            android:defaultValue="0"
+            android:inputType="number"
+            android:singleLine="true"
+            android:key="@string/pref_general_key_HAR_API_detection_interval"
+            android:maxLines="1"
+            android:maxLength="4"
+            android:title="@string/pref_general_title_HAR_API_detection_interval" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_general_category_log_files" >
+
+        <EditTextPreference
+            android:defaultValue="0"
+            android:inputType="number"
+            android:singleLine="true"
+            android:key="@string/pref_general_key_log_files_maxSize"
+            android:maxLines="1"
+            android:maxLength="5"
+            android:title="@string/pref_general_title_log_files_maxSize" />
+
+        <EditTextPreference
+            android:defaultValue="@string/pref_general_default_log_maxTime"
+            android:inputType="number"
+            android:singleLine="true"
+            android:key="@string/pref_general_key_log_maxTime"
+            android:maxLines="1"
+            android:maxLength="5"
+            android:title="@string/pref_general_title_log_maxTime" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

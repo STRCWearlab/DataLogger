@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
+  ~ Hristijan Gjoreski, Daniel Roggen
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of
+  ~ this software and associated documentation files (the "Software"), to deal in
+  ~ the Software without restriction, including without limitation the rights to use,
+  ~ copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+  ~ Software, and to permit persons to whom the Software is furnished to do so,
+  ~ subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+  ~ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+  ~ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+  ~ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+  ~ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_accelerometer" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_accelerometer"
+            android:title="@string/pref_sensors_title_accelerometer" />
+
+        <ListPreference
+            android:dependency="@string/pref_sensors_key_enabled_accelerometer"
+            android:defaultValue="0"
+            android:entries="@array/pref_sensors_list_samplingPeriod"
+            android:entryValues="@array/pref_sensors_list_samplingPeriod_values"
+            android:key="@string/pref_sensors_key_samplingPeriod_accelerometer"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_sensors_title_accelerometer_samplingPeriod" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_accelerometer"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_accelerometer"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_gyroscope" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_gyroscope"
+            android:title="@string/pref_sensors_title_gyroscope" />
+
+        <ListPreference
+            android:dependency="@string/pref_sensors_key_enabled_gyroscope"
+            android:defaultValue="0"
+            android:entries="@array/pref_sensors_list_samplingPeriod"
+            android:entryValues="@array/pref_sensors_list_samplingPeriod_values"
+            android:key="@string/pref_sensors_key_samplingPeriod_gyroscope"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_sensors_title_gyroscope_samplingPeriod" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_gyroscope"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_gyroscope"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_magnetometer" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_magnetometer"
+            android:title="@string/pref_sensors_title_magnetometer" />
+
+        <ListPreference
+            android:dependency="@string/pref_sensors_key_enabled_magnetometer"
+            android:defaultValue="0"
+            android:entries="@array/pref_sensors_list_samplingPeriod"
+            android:entryValues="@array/pref_sensors_list_samplingPeriod_values"
+            android:key="@string/pref_sensors_key_samplingPeriod_magnetometer"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_sensors_title_magnetometer_samplingPeriod" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_magnetometer"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_magnetometer"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_microphone" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_microphone"
+            android:title="@string/pref_sensors_title_microphone" />
+
+        <EditTextPreference
+            android:dependency="@string/pref_sensors_key_enabled_microphone"
+            android:defaultValue="0"
+            android:inputType="number"
+            android:singleLine="true"
+            android:key="@string/pref_sensors_key_samplingPeriod_microphone"
+            android:maxLines="1"
+            android:maxLength="5"
+            android:title="@string/pref_sensors_title_microphone_samplingPeriod" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_microphone"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_microphone"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_battery" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_battery"
+            android:title="@string/pref_sensors_title_battery" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_battery"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_battery"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_cells" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_cells"
+            android:title="@string/pref_sensors_title_cells" />
+
+        <EditTextPreference
+            android:dependency="@string/pref_sensors_key_enabled_cells"
+            android:defaultValue="1"
+            android:inputType="number"
+            android:singleLine="true"
+            android:key="@string/pref_sensors_key_samplingPeriod_cells"
+            android:maxLines="1"
+            android:maxLength="5"
+            android:title="@string/pref_sensors_title_cells_samplingPeriod" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_cells"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_cells"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_depr_cells" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_depr_cells"
+            android:title="@string/pref_sensors_title_depr_cells" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_depr_cells"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_depr_cells"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_location" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_location"
+            android:title="@string/pref_sensors_title_location" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_location"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_location"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_satellite" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_satellite"
+            android:title="@string/pref_sensors_title_satellite" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_satellite"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_satellite"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_temperature" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_temperature"
+            android:title="@string/pref_sensors_title_temperature" />
+
+        <ListPreference
+            android:dependency="@string/pref_sensors_key_enabled_temperature"
+            android:defaultValue="0"
+            android:entries="@array/pref_sensors_list_samplingPeriod"
+            android:entryValues="@array/pref_sensors_list_samplingPeriod_values"
+            android:key="@string/pref_sensors_key_samplingPeriod_temperature"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_sensors_title_temperature_samplingPeriod" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_temperature"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_temperature"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_light" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_light"
+            android:title="@string/pref_sensors_title_light" />
+
+        <ListPreference
+            android:dependency="@string/pref_sensors_key_enabled_light"
+            android:defaultValue="0"
+            android:entries="@array/pref_sensors_list_samplingPeriod"
+            android:entryValues="@array/pref_sensors_list_samplingPeriod_values"
+            android:key="@string/pref_sensors_key_samplingPeriod_light"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_sensors_title_light_samplingPeriod" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_light"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_light"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_pressure" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_pressure"
+            android:title="@string/pref_sensors_title_pressure" />
+
+        <ListPreference
+            android:dependency="@string/pref_sensors_key_enabled_pressure"
+            android:defaultValue="0"
+            android:entries="@array/pref_sensors_list_samplingPeriod"
+            android:entryValues="@array/pref_sensors_list_samplingPeriod_values"
+            android:key="@string/pref_sensors_key_samplingPeriod_pressure"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_sensors_title_pressure_samplingPeriod" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_pressure"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_pressure"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_humidity" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_humidity"
+            android:title="@string/pref_sensors_title_humidity" />
+
+        <ListPreference
+            android:dependency="@string/pref_sensors_key_enabled_humidity"
+            android:defaultValue="0"
+            android:entries="@array/pref_sensors_list_samplingPeriod"
+            android:entryValues="@array/pref_sensors_list_samplingPeriod_values"
+            android:key="@string/pref_sensors_key_samplingPeriod_humidity"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_sensors_title_humidity_samplingPeriod" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_humidity"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_humidity"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_WiFi" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_WiFi"
+            android:title="@string/pref_sensors_title_WiFi" />
+
+        <EditTextPreference
+            android:dependency="@string/pref_sensors_key_enabled_WiFi"
+            android:defaultValue="1"
+            android:inputType="number"
+            android:singleLine="true"
+            android:key="@string/pref_sensors_key_samplingPeriod_WiFi"
+            android:maxLines="1"
+            android:maxLength="5"
+            android:title="@string/pref_sensors_title_WiFi_samplingPeriod" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_WiFi"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_WiFi"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_orientation" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_orientation"
+            android:title="@string/pref_sensors_title_orientation" />
+
+        <ListPreference
+            android:dependency="@string/pref_sensors_key_enabled_orientation"
+            android:defaultValue="0"
+            android:entries="@array/pref_sensors_list_samplingPeriod"
+            android:entryValues="@array/pref_sensors_list_samplingPeriod_values"
+            android:key="@string/pref_sensors_key_samplingPeriod_orientation"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_sensors_title_orientation_samplingPeriod" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_orientation"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_orientation"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_lin_acceleration">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_lin_acceleration"
+            android:title="@string/pref_sensors_title_lin_acceleration" />
+
+        <ListPreference
+            android:dependency="@string/pref_sensors_key_enabled_lin_acceleration"
+            android:defaultValue="0"
+            android:entries="@array/pref_sensors_list_samplingPeriod"
+            android:entryValues="@array/pref_sensors_list_samplingPeriod_values"
+            android:key="@string/pref_sensors_key_samplingPeriod_lin_acceleration"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_sensors_title_orientation_samplingPeriod" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_lin_acceleration"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_lin_acceleration"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_gravity">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_gravity"
+            android:title="@string/pref_sensors_title_gravity" />
+
+        <ListPreference
+            android:dependency="@string/pref_sensors_key_enabled_gravity"
+            android:defaultValue="0"
+            android:entries="@array/pref_sensors_list_samplingPeriod"
+            android:entryValues="@array/pref_sensors_list_samplingPeriod_values"
+            android:key="@string/pref_sensors_key_samplingPeriod_gravity"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_sensors_title_gravity_samplingPeriod" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_gravity"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_gravity"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

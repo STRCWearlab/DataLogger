@@ -1,0 +1,377 @@
+<resources>
+
+
+    <string name="upload_success">Upload completed successfully in [[ELAPSED_TIME]]</string>
+    <string name="upload_error">Data logger error while uploading</string>
+    <string name="upload_notification_second_text">Data logger upload at [[UPLOAD_RATE]] - [[PROGRESS]]</string>
+
+
+    <string name="app_name">DataLogger</string>
+    <string name="menu_action_settings">Settings</string>
+    <string name="menu_action_stats">Labels time summary</string>
+    <string name="toolbar_base_title">Data logger</string>
+    <string name="urlConnectionCharsetName">UTF-8</string>
+
+    <!-- Strings related to main UI -->
+
+    <string-array name="ui_errors_messages_snackbar_list">
+        <item>External storage not available</item>
+        <item>Required sensors are disabled</item>
+        <item>Internet not available</item>
+        <item>File upload error</item>
+        <item>No unsynchronised files</item>
+        <item>Error starting collectors</item>
+    </string-array>
+
+
+    <string name="ui_bluetooth_header_text">Bluetooth network</string>
+    <string name="ui_bluetooth_status_main_text">State is</string>
+    <string name="ui_bluetooth_status_slaves_torso_text">Torso</string>
+    <string name="ui_bluetooth_status_slaves_hips_text">Hips</string>
+    <string name="ui_bluetooth_status_slaves_bag_text">Bag</string>
+
+    <string name="ui_bluetooth_button_text_enable">Enable</string>
+    <string name="ui_bluetooth_button_text_connect">Connect</string>
+    <string name="ui_bluetooth_button_text_pair">Pair</string>
+
+    <string name="ui_dialog_bluetooth_title_paired_devices">Paired Devices</string>
+    <string name="ui_dialog_bluetooth_title_other_devices">Other Available Devices</string>
+    <string name="ui_dialog_bluetooth_button_scan">Scan for devices</string>
+    <string name="ui_dialog_bluetooth_select_device">Select a device to connect</string>
+    <string name="ui_dialog_bluetooth_none_paired">No devices have been paired</string>
+    <string name="ui_dialog_bluetooth_none_found">No devices found</string>
+    <string name="ui_dialog_bluetooth_scanning">Scanning for devices...</string>
+
+    <string-array name="ui_bluetooth_list_state">
+        <item>not supported</item>
+        <item>disabled</item>
+        <item>enabled</item>
+        <item>connecting</item>
+        <item>connected</item>
+    </string-array>
+
+    <string name="ui_labels_activities_spinner_text">Activity:</string>
+    <string name="ui_labels_body_posture_spinner_text">Posture:</string>
+    <string name="ui_labels_iolocation_text">Location:</string>
+    <string name="ui_labels_iolocation_text_outside">Outside</string>
+    <string name="ui_labels_iolocation_text_inside">Inside</string>
+    <string name="ui_labels_header_text">Labels selection</string>
+    <string name="ui_connectivity_header_text">Connectivity</string>
+    <string name="ui_connectivity_first_message_default_text">Last upload:</string>
+    <string name="ui_connectivity_second_message_default_text">Never</string>
+    <string name="ui_connectivity_upload_file_date_dateformat">dd/MM/yy HH:mm:ss</string>
+    <string name="ui_connectivity_upload_button_text">Upload</string>
+    <string name="ui_data_collection_main_text">Data collection </string>
+    <string name="ui_label_annotation_main_text">Label annotation </string>
+    <string name="ui_label_annotation_timer_text">Label time elapsed: </string>
+    <string name="ui_switch_text_on"> is on</string>
+    <string name="ui_switch_text_off"> is off</string>
+    <string name="ui_progressDialog_uploadFiles_text_main">Please wait..</string>
+    <string name="ui_progressDialog_uploadFiles_text_second">Uploading files ...</string>
+
+    <!-- Strings related to foreground service -->
+
+    <string name="notification_content_title">Data Logger</string>
+    <string name="notification_ticker">"Data Logger"</string>
+    <string name="notification_collecting_content_text">Collecting data...</string>
+    <string name="notification_waiting_content_text">Waiting</string>
+    <string name="session_id_date_dateformat">ddMMyyHHmmss</string>
+
+    <!-- Strings related to Settings -->
+
+    <string name="settings_activity_name">Settings</string>
+
+    <!-- Sensor settings -->
+    <string name="pref_header_sensors">Sensors</string>
+    <string name="pref_sensors_title_remoteSync">Enable remote server sync</string>
+
+    <string name="pref_sensors_category_accelerometer">Accelerometer</string>
+    <string name="pref_sensors_key_enabled_accelerometer">PREF_SENSORS_ENABLED_ACC_KEY</string>
+    <string name="pref_sensors_title_accelerometer">Enable accelerometer</string>
+    <string name="pref_sensors_title_accelerometer_samplingPeriod">Sampling rate</string>
+    <string name="pref_sensors_key_samplingPeriod_accelerometer">PREF_SENSORS_SAMPLING_ACC_KEY</string>
+    <string name="pref_sensors_key_sync_accelerometer">PREF_SENSORS_SYNC_ACC_KEY</string>
+
+    <string name="pref_sensors_category_gyroscope">Gyroscope</string>
+    <string name="pref_sensors_key_enabled_gyroscope">PREF_SENSORS_ENABLED_GYR_KEY</string>
+    <string name="pref_sensors_title_gyroscope">Enable gyroscope</string>
+    <string name="pref_sensors_title_gyroscope_samplingPeriod">Sampling rate</string>
+    <string name="pref_sensors_key_samplingPeriod_gyroscope">PREF_SENSORS_SAMPLING_GYR_KEY</string>
+    <string name="pref_sensors_key_sync_gyroscope">PREF_SENSORS_SYNC_GYR_KEY</string>
+
+    <string name="pref_sensors_category_magnetometer">Magnetometer</string>
+    <string name="pref_sensors_key_enabled_magnetometer">PREF_SENSORS_ENABLED_MAG_KEY</string>
+    <string name="pref_sensors_title_magnetometer">Enable magnetometer</string>
+    <string name="pref_sensors_title_magnetometer_samplingPeriod">Sampling rate</string>
+    <string name="pref_sensors_key_samplingPeriod_magnetometer">PREF_SENSORS_SAMPLING_MAG_KEY</string>
+    <string name="pref_sensors_key_sync_magnetometer">PREF_SENSORS_SYNC_MAG_KEY</string>
+
+    <string name="pref_sensors_category_microphone">Audio recorder</string>
+    <string name="pref_sensors_key_enabled_microphone">PREF_SENSORS_ENABLED_MIC_KEY</string>
+    <string name="pref_sensors_title_microphone">Enable audio recorder</string>
+    <string name="pref_sensors_title_microphone_samplingPeriod">Sampling rate in Hz (0 for default)</string>
+    <string name="pref_sensors_key_samplingPeriod_microphone">PREF_SENSORS_SAMPLING_MIC_KEY</string>
+    <string name="pref_sensors_key_sync_microphone">PREF_SENSORS_SYNC_MIC_KEY</string>
+
+    <string name="pref_sensors_category_battery">Battery recorder</string>
+    <string name="pref_sensors_key_enabled_battery">PREF_SENSORS_ENABLED_BAT_KEY</string>
+    <string name="pref_sensors_title_battery">Enable battery recorder</string>
+    <string name="pref_sensors_key_sync_battery">PREF_SENSORS_SYNC_BAT_KEY</string>
+
+    <string name="pref_sensors_category_cells">Cellular network recorder</string>
+    <string name="pref_sensors_key_enabled_cells">PREF_SENSORS_ENABLED_CELL_KEY</string>
+    <string name="pref_sensors_title_cells">Enable cells recorder</string>
+    <string name="pref_sensors_title_cells_samplingPeriod">Sampling rate in Hz (0 for default)</string>
+    <string name="pref_sensors_key_samplingPeriod_cells">PREF_SENSORS_SAMPLING_CELL_KEY</string>
+    <string name="pref_sensors_key_sync_cells">PREF_SENSORS_SYNC_CELL_KEY</string>
+
+    <string name="pref_sensors_category_depr_cells">Cellular network recorder (deprecated)</string>
+    <string name="pref_sensors_key_enabled_depr_cells">PREF_SENSORS_ENABLED_DEPR_CELL_KEY</string>
+    <string name="pref_sensors_title_depr_cells">Enable cells recorder</string>
+    <string name="pref_sensors_key_sync_depr_cells">PREF_SENSORS_SYNC_DEPR_CELL_KEY</string>
+
+    <string name="pref_sensors_category_location">Location recorder</string>
+    <string name="pref_sensors_key_enabled_location">PREF_SENSORS_ENABLED_LOC_KEY</string>
+    <string name="pref_sensors_title_location">Enable location recorder</string>
+    <string name="pref_sensors_key_sync_location">PREF_SENSORS_SYNC_LOC_KEY</string>
+
+    <string name="pref_sensors_category_satellite">Satellites recorder</string>
+    <string name="pref_sensors_key_enabled_satellite">PREF_SENSORS_ENABLED_SAT_KEY</string>
+    <string name="pref_sensors_title_satellite">Enable satellites recorder</string>
+    <string name="pref_sensors_key_sync_satellite">PREF_SENSORS_SYNC_SAT_KEY</string>
+
+    <string name="pref_sensors_category_temperature">Temperature sensor</string>
+    <string name="pref_sensors_key_enabled_temperature">PREF_SENSORS_ENABLED_TEMP_KEY</string>
+    <string name="pref_sensors_title_temperature">Enable temperature sensor</string>
+    <string name="pref_sensors_title_temperature_samplingPeriod">Sampling rate</string>
+    <string name="pref_sensors_key_samplingPeriod_temperature">PREF_SENSORS_SAMPLING_TEMP_KEY</string>
+    <string name="pref_sensors_key_sync_temperature">PREF_SENSORS_SYNC_TEMP_KEY</string>
+
+    <string name="pref_sensors_category_light">Light sensor</string>
+    <string name="pref_sensors_key_enabled_light">PREF_SENSORS_ENABLED_LIG_KEY</string>
+    <string name="pref_sensors_title_light">Enable light sensor</string>
+    <string name="pref_sensors_title_light_samplingPeriod">Sampling rate</string>
+    <string name="pref_sensors_key_samplingPeriod_light">PREF_SENSORS_SAMPLING_LIG_KEY</string>
+    <string name="pref_sensors_key_sync_light">PREF_SENSORS_SYNC_LIG_KEY</string>
+
+    <string name="pref_sensors_category_pressure">Pressure sensor</string>
+    <string name="pref_sensors_key_enabled_pressure">PREF_SENSORS_ENABLED_PRES_KEY</string>
+    <string name="pref_sensors_title_pressure">Enable pressure sensor</string>
+    <string name="pref_sensors_title_pressure_samplingPeriod">Sampling rate</string>
+    <string name="pref_sensors_key_samplingPeriod_pressure">PREF_SENSORS_SAMPLING_PRES_KEY</string>
+    <string name="pref_sensors_key_sync_pressure">PREF_SENSORS_SYNC_PRES_KEY</string>
+
+    <string name="pref_sensors_category_humidity">Humidity sensor</string>
+    <string name="pref_sensors_key_enabled_humidity">PREF_SENSORS_ENABLED_HUM_KEY</string>
+    <string name="pref_sensors_title_humidity">Enable humidity sensor</string>
+    <string name="pref_sensors_title_humidity_samplingPeriod">Sampling rate</string>
+    <string name="pref_sensors_key_samplingPeriod_humidity">PREF_SENSORS_SAMPLING_HUM_KEY</string>
+    <string name="pref_sensors_key_sync_humidity">PREF_SENSORS_SYNC_HUM_KEY</string>
+
+    <string name="pref_sensors_category_WiFi">WiFi recorder</string>
+    <string name="pref_sensors_key_enabled_WiFi">PREF_SENSORS_ENABLED_WIFI_KEY</string>
+    <string name="pref_sensors_title_WiFi">Enable WiFi recorder</string>
+    <string name="pref_sensors_title_WiFi_samplingPeriod">Sampling rate in Hz (1 for default)</string>
+    <string name="pref_sensors_key_samplingPeriod_WiFi">PREF_SENSORS_SAMPLING_WIFI_KEY</string>
+    <string name="pref_sensors_key_sync_WiFi">PREF_SENSORS_SYNC_WIFI_KEY</string>
+
+    <string name="pref_sensors_category_orientation">Orientation</string>
+    <string name="pref_sensors_key_enabled_orientation">PREF_SENSORS_ENABLED_ORIEN_KEY</string>
+    <string name="pref_sensors_title_orientation">Enable orientation</string>
+    <string name="pref_sensors_title_orientation_samplingPeriod">Sampling rate</string>
+    <string name="pref_sensors_key_samplingPeriod_orientation">PREF_SENSORS_SAMPLING_ORIEN_KEY</string>
+    <string name="pref_sensors_key_sync_orientation">PREF_SENSORS_SYNC_ORIEN_KEY</string>
+
+    <string name="pref_sensors_category_lin_acceleration">Linear Acceleration</string>
+    <string name="pref_sensors_key_enabled_lin_acceleration">PREF_SENSORS_ENABLED_LIN_ACC_KEY</string>
+    <string name="pref_sensors_title_lin_acceleration">Enable linear acceleration</string>
+    <string name="pref_sensors_title_lin_acceleration_samplingPeriod">Sampling rate</string>
+    <string name="pref_sensors_key_samplingPeriod_lin_acceleration">PREF_SENSORS_SAMPLING_LIN_ACC_KEY</string>
+    <string name="pref_sensors_key_sync_lin_acceleration">PREF_SENSORS_SYNC_LIN_ACC_KEY</string>
+
+    <string name="pref_sensors_category_gravity">Gravity</string>
+    <string name="pref_sensors_key_enabled_gravity">PREF_SENSORS_ENABLED_GRA_KEY</string>
+    <string name="pref_sensors_title_gravity">Enable gravity</string>
+    <string name="pref_sensors_title_gravity_samplingPeriod">Sampling rate</string>
+    <string name="pref_sensors_key_samplingPeriod_gravity">PREF_SENSORS_SAMPLING_GRA_KEY</string>
+    <string name="pref_sensors_key_sync_gravity">PREF_SENSORS_SYNC_GRA_KEY</string>
+
+    <string-array name="pref_sensors_list_samplingPeriod">
+        <item>Normal</item>
+        <item>Fast</item>
+        <item>Very fast</item>
+        <item>Fastest</item>
+    </string-array>
+    <string-array name="pref_sensors_list_samplingPeriod_values">
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+
+    <!-- General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_general_title_user_name">User name</string>
+    <string name="pref_general_default_user_name">User</string>
+    <string name="pref_general_key_user_name">PREF_GENERAL_USER_NAME_KEY</string>
+
+    <string name="pref_general_title_device_location">Device location</string>
+    <string name="pref_general_key_device_location">PREF_GENERAL_DEVLOC_KEY</string>
+
+    <string-array name="pref_general_list_device_location">
+        <item>Torso</item>
+        <item>Hips</item>
+        <item>Bag</item>
+        <item>Hand</item>
+    </string-array>
+    <string-array name="pref_general_list_device_location_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string name="pref_general_category_HAR_API">API Activity Recognizer</string>
+    <string name="pref_general_title_enabled_HAR_API">Enable API HAR</string>
+    <string name="pref_general_key_enabled_HAR_API">PREF_GENERAL_HAR_API_KEY</string>
+    <string name="pref_general_title_HAR_API_detection_interval">API HAR detection interval in millis</string>
+    <string name="pref_general_key_HAR_API_detection_interval">PREF_GENERAL_DETINT_HAR_API_KEY</string>
+
+    <string-array name="pref_general_list_syncModes">
+        <item>Disabled</item>
+        <item>Manual</item>
+        <item>Auto</item>
+    </string-array>
+    <string-array name="pref_general_list_syncModes_values">
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+
+    <string name="pref_general_category_log_files">Logging</string>
+    <string name="pref_general_title_log_files_maxSize">Log files max size in Kb</string>
+    <string name="pref_general_key_log_files_maxSize">PREF_GENERAL_LOG_FILES_MAXSIZE_KEY</string>
+    <string name="pref_general_title_log_maxTime">Logging time intervals in secs</string>
+    <string name="pref_general_key_log_maxTime">PREF_GENERAL_LOG_MAXTIME_KEY</string>
+    <string name="pref_general_default_log_maxTime">300</string>
+
+    <!-- Synchronization settings -->
+    <string name="pref_header_sync">Synchronization</string>
+
+    <string name="pref_sync_category_remote_server">Remote server</string>
+    <string name="pref_sync_title_server_address">Server address</string>
+    <string name="pref_sync_default_server_address">"http://0.0.0.0/upload.php"</string>
+    <string name="pref_sync_key_server_address">PREF_GENERAL_SERVER_ADDRS_KEY</string>
+    <string name="pref_sync_title_server_syncMode">Files sync</string>
+    <string name="pref_sync_key_server_syncMode">PREF_GENERAL_SERVER_SYNCM_KEY</string>
+
+    <string name="pref_sync_category_bluetooth_network">Bluetooth network</string>
+    <string name="pref_sync_title_slave_timeout">Slave connection timeout in millis</string>
+    <string name="pref_sync_key_slave_timeout">PREF_SYNC_SLAVE_TIMEOUT_KEY</string>
+    <string name="pref_sync_default_slave_timeout">15000</string>
+    <string name="pref_sync_key_enabled_keepalive">PREF_SYNC_ENABLED_KA_KEY</string>
+    <string name="pref_sync_title_keepalive">Enable keepalive</string>
+    <string name="pref_sync_title_master_keepalive">Master keepalive interval in millis</string>
+    <string name="pref_sync_default_master_keepalive">12000</string>
+    <string name="pref_sync_key_master_keepalive">PREF_SYNC_MASTER_KA_KEY</string>
+    <string name="pref_sync_title_slave_keepalive">Slave keepalive interval in millis</string>
+    <string name="pref_sync_default_slave_keepalive">25000</string>
+    <string name="pref_sync_key_slave_keepalive">PREF_SYNC_SLAVE_KA_KEY</string>
+    <string name="flag_event">Flag an event</string>
+    <string name="forgot_to_start">Forgot to start</string>
+    <string name="forgot_to_stop">Forgot to stop</string>
+    <string name="wrong_activity_label">Wrong Activity</string>
+    <string name="wrong_posture_label">Wrong Posture</string>
+    <string name="wrong_location_label">Wrong Location</string>
+    <string name="other">Other</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="notes">Notes</string>
+    <string name="off">off</string>
+    <string name="on">on</string>
+    <string name="upload_confirmation_title">Upload confirmation</string>
+    <string name="menu_action_pair">Pair</string>
+    <string name="cancel_confirmation_title">Cancel upload</string>
+    <string name="ui_connectivity_cancel_upload_button_text">Cancel upload</string>
+    <string name="clear_stats_confirmation_title">Clear statistics confirmation</string>
+    <string name="clear_stats_confirmation_message">Before to clear the stats, please, be sure to have filled the daily journal. Do you want to clear the stats?</string>
+    <string name="label_time_summary">Labels time summary</string>
+    <string name="clear">Clear</string>
+    <string name="cancel_stats_confirmation_title">Are you sure to exit without clear?</string>
+    <string name="cancel_stats_confirmation_message">These stats have to be reported daily on the provided journal and then they have to be cleared.</string>
+    <string name="authors">Dr.Francisco Javier Ordonez Morales \nDr.Hristijan Gjoreski \nMathias Ciliberto \nDr.Daniel Roggen</string>
+    <string name="lab">Wearable Technologies Lab \nSensor Technology Research Centre \nUniversity of Sussex</string>
+    <string name="wearlab_logo">Wearlab Logo</string>
+    <string name="about">About</string>
+
+
+    <!-- Example General settings -->
+
+
+    <!--<string name="pref_title_social_recommendations">Enable social recommendations</string>-->
+    <!--<string name="pref_description_social_recommendations">Recommendations for people to contact-->
+        <!--based on your message history-->
+    <!--</string>-->
+
+    <!--<string name="pref_title_display_name">Display name</string>-->
+    <!--<string name="pref_default_display_name">John Smith</string>-->
+
+    <!--<string name="pref_title_add_friends_to_messages">Add friends to messages</string>-->
+    <!--<string-array name="pref_example_list_titles">-->
+        <!--<item>Always</item>-->
+        <!--<item>When possible</item>-->
+        <!--<item>Never</item>-->
+    <!--</string-array>-->
+    <!--<string-array name="pref_example_list_values">-->
+        <!--<item>1</item>-->
+        <!--<item>0</item>-->
+        <!--<item>-1</item>-->
+    <!--</string-array>-->
+
+
+
+    <!--<string name="pref_title_sync_frequency">Sync frequency</string>-->
+    <!--<string-array name="pref_sync_frequency_titles">-->
+        <!--<item>15 minutes</item>-->
+        <!--<item>30 minutes</item>-->
+        <!--<item>1 hour</item>-->
+        <!--<item>3 hours</item>-->
+        <!--<item>6 hours</item>-->
+        <!--<item>Never</item>-->
+    <!--</string-array>-->
+    <!--<string-array name="pref_sync_frequency_values">-->
+        <!--<item>15</item>-->
+        <!--<item>30</item>-->
+        <!--<item>60</item>-->
+        <!--<item>180</item>-->
+        <!--<item>360</item>-->
+        <!--<item>-1</item>-->
+    <!--</string-array>-->
+
+    <!--<string name="pref_title_system_sync_settings">System sync settings</string>-->
+
+    <!--&lt;!&ndash; Example settings for Notifications &ndash;&gt;-->
+    <!--<string name="pref_header_notifications">Notifications</string>-->
+
+    <!--<string name="pref_title_new_message_notifications">New message notifications</string>-->
+
+    <!--<string name="pref_title_ringtone">Ringtone</string>-->
+    <!--<string name="pref_ringtone_silent">Silent</string>-->
+
+    <!--<string name="pref_title_vibrate">Vibrate</string>-->
+
+    <!--&lt;!&ndash; Activity detection strings &ndash;&gt;-->
+    <!--<string name="in_vehicle">In a vehicle</string>-->
+    <!--<string name="on_bicycle">On a bicycle</string>-->
+    <!--<string name="on_foot">On foot</string>-->
+    <!--<string name="running">Running</string>-->
+    <!--<string name="still">Still</string>-->
+    <!--<string name="tilting">Tilting</string>-->
+    <!--<string name="unknown">Unknown activity</string>-->
+    <!--<string name="walking">Walking</string>-->
+    <!--<string name="unidentifiable_activity">Unidentifiable activity: %1$d</string>-->
+
+
+
+</resources>

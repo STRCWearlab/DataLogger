@@ -1,0 +1,179 @@
+/*
+ * Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
+ * Hristijan Gjoreski, Daniel Roggen
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the "Software"), to deal in
+ * the Software without restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+ * Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+package uk.ac.sussex.wear.android.datalogger.upload;
+
+import android.content.Intent;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+
+/**
+ * Implements an HTTP Multipart upload task.
+ *
+ * @author gotev (Aleksandar Gotev)
+ * @author eliasnaur
+ * @author cankov
+ */
+public class MultipartUploadTask extends HttpUploadTask {
+
+    protected static final String PARAM_UTF8_CHARSET = "multipartUtf8Charset";
+
+    private static final String BOUNDARY_SIGNATURE = "-------AndroidUploadService";
+    private static final Charset US_ASCII = Charset.forName("US-ASCII");
+    private static final Charset UTF8 = Charset.forName("UTF-8");
+    private static final String NEW_LINE = "\r\n";
+    private static final String TWO_HYPHENS = "--";
+
+    // properties associated to each file
+    protected static final String PROPERTY_REMOTE_FILE_NAME = "httpRemoteFileName";
+    protected static final String PROPERTY_CONTENT_TYPE = "httpContentType";
+    protected static final String PROPERTY_PARAM_NAME = "httpParamName";
+
+    private String boundary;
+    private byte[] boundaryBytes;
+    private byte[] trailerBytes;
+    private boolean isUtf8Charset;
+
+    @Override
+    protected void init(UploadService service, Intent intent) throws IOException {
+        super.init(service, intent);
+        boundary = getBoundary();
+        boundaryBytes = getBoundaryBytes();
+        trailerBytes = getTrailerBytes();
+        isUtf8Charset = intent.getBooleanExtra(PARAM_UTF8_CHARSET, false);
+
+        if (params.getFiles().size() <= 1) {
+            httpParams.addRequestHeader("Connection", "close");
+        } else {
+            httpParams.addRequestHeader("Connection", "Keep-Alive");
+        }
+
+        httpParams.addRequestHeader("Content-Type", "multipart/form-data; boundary=" + boundary);
+    }
+
+    @Override
+    protected long getBodyLength() throws UnsupportedEncodingException {
+        return (getRequestParametersLength() + getFilesLength() + trailerBytes.length);
+    }
+
+    @Override
+    protected void writeBody(HttpConnection connection) throws IOException {
+        writeRequestParameters(connection);
+        writeFiles(connection);
+        connection.writeBody(trailerBytes);
+    }
+
+    private String getBoundary() {
+        return BOUNDARY_SIGNATURE + System.currentTimeMillis();
+    }
+
+    private byte[] getBoundaryBytes() throws UnsupportedEncodingException {
+        return (NEW_LINE + TWO_HYPHENS + boundary + NEW_LINE).getBytes(US_ASCII);
+    }
+
+    private byte[] getTrailerBytes() throws UnsupportedEncodingException {
+        return (NEW_LINE + TWO_HYPHENS + boundary + TWO_HYPHENS + NEW_LINE).getBytes(US_ASCII);
+    }
+
+    private long getFilesLength() throws UnsupportedEncodingException {
+        long total = 0;
+
+        for (UploadFile file : params.getFiles()) {
+            total += getTotalMultipartBytes(file, isUtf8Charset);
+        }
+
+        return total;
+    }
+
+    private long getRequestParametersLength() throws UnsupportedEncodingException {
+        long parametersBytes = 0;
+
+        if (!httpParams.getRequestParameters().isEmpty()) {
+            for (final NameValue parameter : httpParams.getRequestParameters()) {
+                // the bytes needed for every parameter are the sum of the boundary bytes
+                // and the bytes occupied by the parameter
+                parametersBytes += boundaryBytes.length
+                        + parameter.getMultipartBytes(isUtf8Charset).length;
+            }
+        }
+
+        return parametersBytes;
+    }
+
+    private byte[] getMultipartHeader(UploadFile file, boolean isUtf8)
+            throws UnsupportedEncodingException {
+        String header = "Content-Disposition: form-data; name=\"" +
+                file.getProperty(PROPERTY_PARAM_NAME) + "\"; filename=\"" +
+                file.getProperty(PROPERTY_REMOTE_FILE_NAME) + "\"" + NEW_LINE +
+                "Content-Type: " + file.getProperty(PROPERTY_CONTENT_TYPE) +
+                NEW_LINE + NEW_LINE;
+
+        return header.getBytes(isUtf8 ? UTF8 : US_ASCII);
+    }
+
+    private long getTotalMultipartBytes(UploadFile file, boolean isUtf8)
+            throws UnsupportedEncodingException {
+        return boundaryBytes.length + getMultipartHeader(file, isUtf8).length + file.length();
+    }
+
+    private void writeRequestParameters(HttpConnection connection) throws IOException {
+        if (!httpParams.getRequestParameters().isEmpty()) {
+            for (final NameValue parameter : httpParams.getRequestParameters()) {
+                connection.writeBody(boundaryBytes);
+                byte[] formItemBytes = parameter.getMultipartBytes(isUtf8Charset);
+                connection.writeBody(formItemBytes);
+
+                uploadedBytes += boundaryBytes.length + formItemBytes.length;
+                broadcastProgress(uploadedBytes, totalBytes);
+            }
+        }
+    }
+
+    private void writeFiles(HttpConnection connection) throws IOException {
+        for (UploadFile file : params.getFiles()) {
+            if (!shouldContinue)
+                break;
+
+            connection.writeBody(boundaryBytes);
+            byte[] headerBytes = getMultipartHeader(file, isUtf8Charset);
+            connection.writeBody(headerBytes);
+
+            uploadedBytes += boundaryBytes.length + headerBytes.length;
+            broadcastProgress(uploadedBytes, totalBytes);
+
+            final InputStream stream = file.getStream();
+            writeStream(stream);
+        }
+    }
+
+    @Override
+    protected void onSuccessfulUpload() {
+        for (UploadFile file : params.getFiles()) {
+            addSuccessfullyUploadedFile(file.getAbsolutePath());
+        }
+        params.getFiles().clear();
+    }
+
+}

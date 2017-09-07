@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#000000</color>
+    <color name="colorPrimary">#00afaa</color>
+    <color name="colorPrimaryDark">#00272c</color>
+    <color name="colorAccent">#00afaa</color>
+    <color name="colorBtSlavesOn">#00afaa</color>
+    <color name="colorBtSlavesOff">#808080</color>
+    <color name="colorSpinnerOff">#D3D3D3</color>
+    <color name="colorSpinnerOn">#000000</color>
+    <color name="colorTextCollectionOn">#00afaa</color>
+    <color name="colorTextCollectionOff">#808080</color>
+
+    <!--<color name="colorBgLocation1">#f8bbd0</color>-->
+
+</resources>
