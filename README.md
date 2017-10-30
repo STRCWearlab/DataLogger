@@ -13,7 +13,7 @@ Application features:
   - Battery level
   - Microphone audio
   - Google activity recognition labels
-  Every sensors can be configured in the settings to enable/disable it, set the sampling frequency, the remote upload of its data.
+-Every sensors can be configured in the settings to enable/disable it, set the sampling frequency, the remote upload of its data.
 - Remote upload of data (`PHP_upload_script.txt` contains the PHP code for the server)
 - Multidevice (master-slaves) configuration
 - Bluetooth connection for synchronization among device of time and status (logging/no logging, labels, sublabels)
