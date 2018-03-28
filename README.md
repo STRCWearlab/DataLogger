@@ -47,6 +47,10 @@ It can be configured for collecting data on multiple devices synchronously, in a
 ### Remote upload
 The remote upload functionality requires to set up the remote address for the upload. The address is in `string.xml` in the value folder.
 
+### Permissions
+Due to the changes to the permissions systems in the latest versions of Android, please check and authorize the access to Microphone, 
+Storage, Telephone and Location in the system settings before to use the application.
+
 ## LICENSE
 This application has been developed for research purpose and release under MIT License. The usage of this application in research and publications must be acknowledged by citing the following publication:
 
