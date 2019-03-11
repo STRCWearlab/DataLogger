@@ -33,6 +33,8 @@ import java.util.ArrayList;
 
 import uk.ac.sussex.wear.android.datalogger.Constants;
 
+// class for intent service of google api service ?!
+
 public class HARecognizerApiIntentService extends IntentService {
 
     private static final String TAG = HARecognizerApiIntentService.class.getSimpleName();

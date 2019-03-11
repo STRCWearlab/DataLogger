@@ -37,6 +37,8 @@ import java.util.Date;
 
 import uk.ac.sussex.wear.android.datalogger.log.CustomLogger;
 
+// old child class for collecting data about mobile cells
+
 public class Depr_CellsInfoDataCollector extends AbstractDataCollector {
 
     private static final String TAG = Depr_CellsInfoDataCollector.class.getSimpleName();

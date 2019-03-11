@@ -38,6 +38,7 @@ import java.util.List;
 
 import uk.ac.sussex.wear.android.datalogger.log.CustomLogger;
 
+// child class for collecting wifi data
 
 public class WiFiDataCollector extends AbstractDataCollector {
 

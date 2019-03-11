@@ -22,6 +22,8 @@
 
 package uk.ac.sussex.wear.android.datalogger.data;
 
+// child class for bluetooth connection commands
+
 public class CommandBTC extends CommandBase {
 
     String mAddress;

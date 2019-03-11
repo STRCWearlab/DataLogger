@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import uk.ac.sussex.wear.android.datalogger.Constants;
 import uk.ac.sussex.wear.android.datalogger.SharedPreferencesHelper;
 
+// class for collecting sensor data, includes all sensors to be measured
 
 public class DataCollectors {
 

@@ -22,6 +22,7 @@
 
 package uk.ac.sussex.wear.android.datalogger.collector;
 
+// abstract parent class for various data collectors
 
 public abstract class AbstractDataCollector {
 

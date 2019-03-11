@@ -26,6 +26,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+// class for creating/updating database
+
 public class DataLoggerOpenHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "datalogger.db";

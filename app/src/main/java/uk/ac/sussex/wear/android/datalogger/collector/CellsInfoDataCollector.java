@@ -50,7 +50,7 @@ import java.util.List;
 
 import uk.ac.sussex.wear.android.datalogger.log.CustomLogger;
 
-
+// child class for collecting data about mobile cells (GSM, CDMA, LTE, WCDMA) in phone's range
 
 public class CellsInfoDataCollector extends AbstractDataCollector {
 
@@ -264,7 +264,7 @@ public class CellsInfoDataCollector extends AbstractDataCollector {
                 // Get the CDMA RSSI value in dBm
                 int cdmaDbm = cdmaStength.getCdmaDbm();
 
-                // Get the CDMA Ec/Io value in dB*10
+                // Get the CDMkA Ec/Io value in dB*10
                 int cdmaEcio = cdmaStength.getCdmaEcio();
 
                 // Get cdma as level 0..4

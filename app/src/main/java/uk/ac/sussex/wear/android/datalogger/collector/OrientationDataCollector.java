@@ -34,7 +34,7 @@ import java.util.Date;
 
 import uk.ac.sussex.wear.android.datalogger.log.CustomLogger;
 
-
+// child class for collecting orientation data (rotation sensor)
 
 public class OrientationDataCollector extends AbstractDataCollector implements SensorEventListener {
 

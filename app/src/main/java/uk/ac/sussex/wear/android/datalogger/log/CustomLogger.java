@@ -33,6 +33,8 @@ import java.io.IOException;
 
 import uk.ac.sussex.wear.android.datalogger.db.DataLoggerDataSource;
 
+// parent class creating log files
+
 public class CustomLogger {
 
     private static final String TAG = CustomLogger.class.getSimpleName();

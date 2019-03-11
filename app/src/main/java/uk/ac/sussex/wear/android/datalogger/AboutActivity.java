@@ -30,6 +30,8 @@ import android.support.v7.app.AppCompatActivity;
  * Created by ThiasTux.
  */
 
+// class for the 'About" Activity screen
+
 public class AboutActivity extends AppCompatActivity {
 
     @Override

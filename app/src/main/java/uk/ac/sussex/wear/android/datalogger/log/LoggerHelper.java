@@ -31,6 +31,8 @@ import java.io.File;
  * Created by fjordonez on 13/10/16.
  */
 
+// class for storing logs
+
 public final class LoggerHelper {
 
     private static final String TAG = LoggerHelper.class.getSimpleName();

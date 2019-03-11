@@ -22,6 +22,8 @@
 
 package uk.ac.sussex.wear.android.datalogger.data;
 
+// child class for bluetooth start commands
+
 public class CommandBTS extends CommandBase {
 
     @Override

@@ -26,6 +26,8 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+// parent class for commands
+
 public abstract class CommandBase {
 
     private static final String TAG = CommandBase.class.getSimpleName();

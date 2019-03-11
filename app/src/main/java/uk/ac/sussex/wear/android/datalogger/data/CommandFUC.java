@@ -22,6 +22,8 @@
 
 package uk.ac.sussex.wear.android.datalogger.data;
 
+// child class for file upload cancel command
+
 public class CommandFUC extends CommandBase {
 
     @Override

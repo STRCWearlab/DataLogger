@@ -25,6 +25,8 @@ package uk.ac.sussex.wear.android.datalogger.db;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+// class for creation of database with sql statement
+
 public class LogFileTable {
 
     private static final String TAG = LogFileTable.class.getSimpleName();

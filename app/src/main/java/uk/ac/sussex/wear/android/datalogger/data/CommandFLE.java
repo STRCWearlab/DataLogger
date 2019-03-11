@@ -25,6 +25,9 @@ package uk.ac.sussex.wear.android.datalogger.data;
 /**
  * Created by mathias on 01/02/17.
  */
+
+// child class for flag event commands
+
 public class CommandFLE extends CommandBase {
 
     String flag;

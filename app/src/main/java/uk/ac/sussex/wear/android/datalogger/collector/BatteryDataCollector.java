@@ -35,6 +35,8 @@ import java.util.Date;
 
 import uk.ac.sussex.wear.android.datalogger.log.CustomLogger;
 
+// child class for collecting battery data of the phone
+
 public class BatteryDataCollector extends AbstractDataCollector {
 
     private static final String TAG = BatteryDataCollector.class.getSimpleName();

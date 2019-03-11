@@ -33,6 +33,9 @@ import uk.ac.sussex.wear.android.datalogger.R;
 /**
  * Created by fjordonez on 01/10/16.
  */
+
+// child class for logging labels
+
 public class LabelsLogger extends CustomLogger {
 
     private static final String TAG = LabelsLogger.class.getSimpleName();

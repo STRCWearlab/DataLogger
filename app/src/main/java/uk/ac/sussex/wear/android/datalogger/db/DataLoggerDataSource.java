@@ -32,6 +32,8 @@ import java.util.ArrayList;
 
 import uk.ac.sussex.wear.android.datalogger.data.DataCollectionSession;
 
+// class for data source of datalogger
+
 public class DataLoggerDataSource {
 
     private static final String TAG = DataLoggerDataSource.class.getSimpleName();
