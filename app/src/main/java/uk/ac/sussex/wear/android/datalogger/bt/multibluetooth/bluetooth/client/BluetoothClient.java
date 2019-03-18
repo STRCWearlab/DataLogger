@@ -18,7 +18,8 @@
  * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
+ *//*
+
 
 package uk.ac.sussex.wear.android.datalogger.bt.multibluetooth.bluetooth.client;
 
@@ -34,9 +35,11 @@ import java.util.UUID;
 
 
 
+*/
 /**
  * Created by Rami MARTIN on 13/04/2014.
- */
+ *//*
+
 public class BluetoothClient implements Runnable {
 
     private boolean CONTINUE_READ_WRITE = true;
@@ -144,3 +147,4 @@ public class BluetoothClient implements Runnable {
         }
     }
 }
+*/

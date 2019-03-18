@@ -189,7 +189,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // updated to reflect the new value, per the Android Design
             // guidelines.
             bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_general_key_user_name)));
-            bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_general_key_device_location)));
+            //bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_general_key_device_location)));
             bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_general_key_HAR_API_detection_interval)));
             bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_general_key_log_files_maxSize)));
             bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_general_key_log_maxTime)));
@@ -245,9 +245,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // guidelines.
             bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sync_key_server_address)));
             bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sync_key_server_syncMode)));
-            bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sync_key_slave_timeout)));
-            bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sync_key_master_keepalive)));
-            bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sync_key_slave_keepalive)));
+            //bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sync_key_slave_timeout)));
+            //bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sync_key_master_keepalive)));
+            //bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sync_key_slave_keepalive)));
         }
 
     }

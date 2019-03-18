@@ -54,7 +54,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 
-import uk.ac.sussex.wear.android.datalogger.bt.BluetoothConnectionHelper;
+//import uk.ac.sussex.wear.android.datalogger.bt.BluetoothConnectionHelper;
 import uk.ac.sussex.wear.android.datalogger.collector.DataCollectors;
 import uk.ac.sussex.wear.android.datalogger.data.CommandBase;
 import uk.ac.sussex.wear.android.datalogger.data.CommandDCE;
@@ -89,7 +89,7 @@ public class DataLoggerService extends Service {
 
     private HARecognizerApiHandler mHARecognizerApiHandler;
 
-    private BluetoothConnectionHelper mBluetoothConnection = null;
+    //private BluetoothConnectionHelper mBluetoothConnection = null;
 
     private BluetoothAdapter mBluetoothAdapter = null;
 
@@ -113,7 +113,7 @@ public class DataLoggerService extends Service {
     };
 
 
-    private final Runnable connectTimerRunnable = new Runnable() {
+   /* private final Runnable connectTimerRunnable = new Runnable() {
         @Override
         public void run() {
             int timeout = SharedPreferencesHelper.getSlaveConnectionTimeout(DataLoggerService.this);
@@ -121,7 +121,7 @@ public class DataLoggerService extends Service {
             if (BuildConfig.DEBUG && (deviceLocation == Constants.DEVICE_LOCATION_HAND))
                 throw new RuntimeException("::connectTimerRunnable Runnable only required in slave devices");
             Log.i(TAG, "::ConnectTimerRunnable Re/Starting connection with index " + deviceLocation + ". Timed every " + timeout + " millis.");
-            if (!mBluetoothConnection.isConnected(deviceLocation) && !mMasterAddress.equals("")) {
+            *//*if (!mBluetoothConnection.isConnected(deviceLocation) && !mMasterAddress.equals("")) {
                 Log.i(TAG, "::ConnectTimerRunnable Current connection state at index " + deviceLocation + " is "
                         + mBluetoothConnection.isConnected(deviceLocation)
                         + ", starting connection to address " + mMasterAddress);
@@ -129,9 +129,9 @@ public class DataLoggerService extends Service {
                 mHandler.postDelayed(this, timeout);
                 mBluetoothConnection.start(deviceLocation);
                 mBluetoothConnection.connect(mMasterAddress, deviceLocation);
-            }
+            }*//*
         }
-    };
+    };*/
 
 
     private final Handler mHandler = new Handler(new Handler.Callback() {
@@ -142,7 +142,7 @@ public class DataLoggerService extends Service {
             int deviceLocation = SharedPreferencesHelper.getDeviceLocationValue(DataLoggerService.this);
             switch (msg.what) {
                 case Constants.BLUETOOTH_MESSAGE_STATE_CHANGE:
-                    switch (msg.arg1) {
+                    /*switch (msg.arg1) {
                         case BluetoothConnectionHelper.STATE_CONNECTED:
                             Log.i(TAG, "::handleMessage Bluetooth connection established. Socket at position " + msg.arg2);
                             //Only the slaves change to connected state
@@ -171,7 +171,7 @@ public class DataLoggerService extends Service {
                         case BluetoothConnectionHelper.STATE_NONE:
                             Log.i(TAG, "::handleMessage Bluetooth socket waiting. Socket at position " + msg.arg2);
                             break;
-                    }
+                    }*/
                     break;
                 case Constants.BLUETOOTH_MESSAGE_CONNECTION_LOST:
                     final int indexSocketLost = msg.getData().getInt(Constants.BLUETOOTH_CONNECTED_DEVICE_LOCATION);
@@ -200,7 +200,7 @@ public class DataLoggerService extends Service {
                         }
                     }
                     // The bluetooth socket is forced to stop
-                    mBluetoothConnection.stop(indexSocketLost);
+                    //mBluetoothConnection.stop(indexSocketLost);
                     // If the bluetooth adapter keeps enabled (the connection can be lost when the adapter is manually disabled)
                     // the bluetooth connection tries to reconnect
                     int bluetoothState = mBluetoothAdapter.isEnabled() ? Constants.BLUETOOTH_STATE_ENABLED : Constants.BLUETOOTH_STATE_DISABLED;
@@ -539,10 +539,10 @@ public class DataLoggerService extends Service {
         notificationManager.notify(Constants.NOTIFICATION_ID.FOREGROUND_SERVICE, mNotification);
 
         // If the device is the master the command is broadcasted
-        if ((deviceLocation == Constants.DEVICE_LOCATION_HAND) && (mBluetoothConnection != null)) {
+        /*if ((deviceLocation == Constants.DEVICE_LOCATION_HAND) && (mBluetoothConnection != null)) {
             String broadcastMessage = new CommandDCE(true, mDataCollectionSession.getSessionId(), SystemClock.elapsedRealtimeNanos()).getMessageBluetooth();
             mBluetoothConnection.broadcastMessage(broadcastMessage);
-        }
+        }*/
 
         return -1;
     }
@@ -591,11 +591,11 @@ public class DataLoggerService extends Service {
         notificationManager.notify(Constants.NOTIFICATION_ID.FOREGROUND_SERVICE, mNotification);
 
         // If the device is the master the command is broadcasted
-        int deviceLocation = SharedPreferencesHelper.getDeviceLocationValue(this);
+        /*int deviceLocation = SharedPreferencesHelper.getDeviceLocationValue(this);
         if ((deviceLocation == Constants.DEVICE_LOCATION_HAND) && (mBluetoothConnection != null)) {
             String broadcastMessage = new CommandDCE(false).getMessageBluetooth();
             mBluetoothConnection.broadcastMessage(broadcastMessage);
-        }
+        }*/
 
         return true;
     }
@@ -643,11 +643,11 @@ public class DataLoggerService extends Service {
         haltAndRestartLogging();
 
         // If the device is the master the command is broadcasted
-        int deviceLocation = SharedPreferencesHelper.getDeviceLocationValue(this);
+        /*int deviceLocation = SharedPreferencesHelper.getDeviceLocationValue(this);
         if ((deviceLocation == Constants.DEVICE_LOCATION_HAND) && (mBluetoothConnection != null)) {
             String broadcastMessage = new CommandLAE(true, activity, bodyPosition, location).getMessageBluetooth();
             mBluetoothConnection.broadcastMessage(broadcastMessage);
-        }
+        }*/
 
         return true;
     }
@@ -675,11 +675,11 @@ public class DataLoggerService extends Service {
         Log.d(TAG, "stopLabelAnnotation " + SharedPreferencesHelper.getAnnotatedActivityLabel(this));
 
         // If the device is the master the command is broadcasted
-        int deviceLocation = SharedPreferencesHelper.getDeviceLocationValue(this);
+        /*int deviceLocation = SharedPreferencesHelper.getDeviceLocationValue(this);
         if ((deviceLocation == Constants.DEVICE_LOCATION_HAND) && (mBluetoothConnection != null)) {
             String broadcastMessage = new CommandLAE(false).getMessageBluetooth();
             mBluetoothConnection.broadcastMessage(broadcastMessage);
-        }
+        }*/
 
         return true;
     }
@@ -709,12 +709,12 @@ public class DataLoggerService extends Service {
         haltAndRestartLogging();
 
         // If the device is the master the command is broadcasted
-        int deviceLocation = SharedPreferencesHelper.getDeviceLocationValue(this);
+        /*int deviceLocation = SharedPreferencesHelper.getDeviceLocationValue(this);
         if ((deviceLocation == Constants.DEVICE_LOCATION_HAND) && (mBluetoothConnection != null)) {
             String broadcastMessage = new CommandLAE(false).setStopAndStartEvent(activity, bodyPosition, location)
                     .getMessageBluetooth();
             mBluetoothConnection.broadcastMessage(broadcastMessage);
-        }
+        }*/
 
         return true;
     }
@@ -760,7 +760,7 @@ public class DataLoggerService extends Service {
                         }
                     }
                     break;
-                case CommandBase.COMMAND_BLUETOOTH_START:
+                /*case CommandBase.COMMAND_BLUETOOTH_START:
                     if (mBluetoothConnection != null) {
                         mBluetoothConnection.stop(Constants.DEVICE_LOCATION_TORSO);
                         mBluetoothConnection.stop(Constants.DEVICE_LOCATION_HIPS);
@@ -773,21 +773,21 @@ public class DataLoggerService extends Service {
                         int bluetoothState = mBluetoothAdapter.isEnabled() ? Constants.BLUETOOTH_STATE_ENABLED : Constants.BLUETOOTH_STATE_DISABLED;
                         updateBluetoothState(bluetoothState);
                     }
-                    break;
+                    break;*/
                 case CommandBase.COMMAND_BLUETOOTH_CONNECT:
                     if (!itr.hasNext())
                         throw new Exception("Command '" + comm + "' is malformed or missing parameters");
                     mMasterAddress = itr.next();
-                    mHandler.post(connectTimerRunnable);
+                    //mHandler.post(connectTimerRunnable);
                     break;
                 case CommandBase.COMMAND_FILES_UPLOAD_START:
                     mFileUploader = FileUploader.getInstance(this, mHandler);
                     mFileUploader.startUpload();
-                    int deviceLocation = SharedPreferencesHelper.getDeviceLocationValue(this);
+                    /*int deviceLocation = SharedPreferencesHelper.getDeviceLocationValue(this);
                     if ((deviceLocation == Constants.DEVICE_LOCATION_HAND) && (mBluetoothConnection != null)) {
                         String broadcastMessage = new CommandFUS().getMessageBluetooth();
                         mBluetoothConnection.broadcastMessage(broadcastMessage);
-                    }
+                    }*/
                     break;
                 case CommandBase.COMMAND_FILES_UPLOAD_CANCEL:
                     mFileUploader.cancelUpload();
@@ -886,7 +886,7 @@ public class DataLoggerService extends Service {
         Log.d(TAG, "::updateBluetoothState Updating bluetooth with state: " + bluetoothStateList[state]);
 
         SharedPreferencesHelper.setBluetoothStatus(this, state);
-        switch (state) {
+        /*switch (state) {
             case Constants.BLUETOOTH_STATE_DISABLED:
                 mHandler.removeCallbacks(connectTimerRunnable);
                 break;
@@ -917,7 +917,7 @@ public class DataLoggerService extends Service {
                 }
 
                 break;
-        }
+        }*/
     }
 
 

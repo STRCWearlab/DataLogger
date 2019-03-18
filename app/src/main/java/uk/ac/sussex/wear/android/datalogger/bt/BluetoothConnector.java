@@ -18,7 +18,8 @@
  * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
+ *//*
+
 
 package uk.ac.sussex.wear.android.datalogger.bt;
 
@@ -35,9 +36,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+*/
 /**
  * Created by fjordonez on 27/01/17.
- */
+ *//*
+
 
 public class BluetoothConnector {
 
@@ -49,12 +52,14 @@ public class BluetoothConnector {
     private int candidate;
 
 
-    /**
+    */
+/**
      * @param device  the device
      * @param secure  if connection should be done via a secure socket
      * @param adapter the Android BT adapter
      * @param uuid    a list of UUIDs. if null or empty, the Serial PP id is used
-     */
+     *//*
+
     public BluetoothConnector(BluetoothDevice device, boolean secure, BluetoothAdapter adapter,
                               UUID uuid) {
         this.device = device;
@@ -239,9 +244,11 @@ public class BluetoothConnector {
 
     public static class FallbackException extends Exception {
 
-        /**
+        */
+/**
          *
-         */
+         *//*
+
         private static final long serialVersionUID = 1L;
 
         public FallbackException(Exception e) {
@@ -249,4 +256,4 @@ public class BluetoothConnector {
         }
 
     }
-}
+}*/

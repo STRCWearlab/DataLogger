@@ -40,7 +40,7 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/bluetooth_ui"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -165,13 +165,13 @@
                 android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray" />
 
-        </RelativeLayout>
+        </RelativeLayout>-->
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/connectivity_ui"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/bluetooth_ui">
+            android:layout_height="wrap_content">
+            <!--android:layout_below="@id/bluetooth_ui">-->
 
             <TextView
                 android:id="@+id/ui_connectivity_header"

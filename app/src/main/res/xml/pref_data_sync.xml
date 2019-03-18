@@ -45,7 +45,7 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/pref_sync_category_bluetooth_network" >
+    <!--<PreferenceCategory android:title="@string/pref_sync_category_bluetooth_network" >
 
         <EditTextPreference
             android:defaultValue="@string/pref_sync_default_slave_timeout"
@@ -83,7 +83,6 @@
             android:maxLength="5"
             android:title="@string/pref_sync_title_slave_keepalive" />
 
-    </PreferenceCategory>
-
+    </PreferenceCategory>-->
 
 </PreferenceScreen>

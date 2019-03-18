@@ -18,7 +18,8 @@
  * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
+ *//*
+
 
 package uk.ac.sussex.wear.android.datalogger.bt;
 
@@ -41,9 +42,11 @@ import java.util.UUID;
 import uk.ac.sussex.wear.android.datalogger.Constants;
 import uk.ac.sussex.wear.android.datalogger.data.CommandBase;
 
+*/
 /**
  * Created by fjordonez on 27/01/17.
- */
+ *//*
+
 
 public class MultiBluetoothManager {
 
@@ -52,11 +55,13 @@ public class MultiBluetoothManager {
     private static final String NAME = "MultiBluetoothManager";
 
     // Member fields
-    private final BluetoothAdapter mBluetoothAdapter;
+   */
+/* private final BluetoothAdapter mBluetoothAdapter;
     private final Handler mHandler;
     private final Context mContext;
     private int[] mStates;
-    private boolean mIsServer;
+    private boolean mIsServer;*//*
+
 
     private BluetoothClient mBluetoothClient;
     private ArrayList<BluetoothServer> mServerConnectedList;
@@ -93,11 +98,13 @@ public class MultiBluetoothManager {
     }
 
 
-    /**
+    */
+/**
      * Start the ConnectThread to initiate a connection to a remote device.
      *
      * @param address The address to connect
-     */
+     *//*
+
     public synchronized void connect(String address, int index) {
         Log.i(TAG, "::connect Trying to connect to address " + address + ". ");
 
@@ -123,9 +130,11 @@ public class MultiBluetoothManager {
 
 
 
-    /**
+    */
+/**
      * Indicate that the connection attempt failed and notify the UI Activity.
-     */
+     *//*
+
     private void connectionFailed(int index) {
         // Send a failure message back to the Activity
         Message msg = mHandler.obtainMessage(Constants.BLUETOOTH_MESSAGE_CONNECTION_FAILED, index);
@@ -350,3 +359,4 @@ public class MultiBluetoothManager {
     }
 
 }
+*/
