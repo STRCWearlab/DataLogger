@@ -22,6 +22,75 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <PreferenceCategory android:title="@string/pref_sensors_category_cells" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_cells"
+            android:title="@string/pref_sensors_title_cells" />
+
+        <EditTextPreference
+            android:dependency="@string/pref_sensors_key_enabled_cells"
+            android:defaultValue="1"
+            android:inputType="number"
+            android:singleLine="true"
+            android:key="@string/pref_sensors_key_samplingPeriod_cells"
+            android:maxLines="1"
+            android:maxLength="5"
+            android:title="@string/pref_sensors_title_cells_samplingPeriod" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_cells"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_cells"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_WiFi" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_WiFi"
+            android:title="@string/pref_sensors_title_WiFi" />
+
+        <EditTextPreference
+            android:dependency="@string/pref_sensors_key_enabled_WiFi"
+            android:defaultValue="1"
+            android:inputType="number"
+            android:singleLine="true"
+            android:key="@string/pref_sensors_key_samplingPeriod_WiFi"
+            android:maxLines="1"
+            android:maxLength="5"
+            android:title="@string/pref_sensors_title_WiFi_samplingPeriod" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_WiFi"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_WiFi"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sensors_category_Bluetooth" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_enabled_Bluetooth"
+            android:title="@string/pref_sensors_title_Bluetooth" />
+
+        <EditTextPreference
+            android:dependency="@string/pref_sensors_key_enabled_Bluetooth"
+            android:defaultValue="1"
+            android:inputType="number"
+            android:singleLine="true"
+            android:key="@string/pref_sensors_key_samplingPeriod_Bluetooth"
+            android:maxLines="1"
+            android:maxLength="5"
+            android:title="@string/pref_sensors_title_Bluetooth_samplingPeriod" />
+
+        <SwitchPreference
+            android:dependency="@string/pref_sensors_key_enabled_Bluetooth"
+            android:defaultValue="true"
+            android:key="@string/pref_sensors_key_sync_Bluetooth"
+            android:title="@string/pref_sensors_title_remoteSync" />
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/pref_sensors_category_accelerometer" >
         <SwitchPreference
             android:defaultValue="true"
@@ -124,29 +193,6 @@
             android:dependency="@string/pref_sensors_key_enabled_battery"
             android:defaultValue="true"
             android:key="@string/pref_sensors_key_sync_battery"
-            android:title="@string/pref_sensors_title_remoteSync" />
-    </PreferenceCategory>
-
-    <PreferenceCategory android:title="@string/pref_sensors_category_cells" >
-        <SwitchPreference
-            android:defaultValue="true"
-            android:key="@string/pref_sensors_key_enabled_cells"
-            android:title="@string/pref_sensors_title_cells" />
-
-        <EditTextPreference
-            android:dependency="@string/pref_sensors_key_enabled_cells"
-            android:defaultValue="1"
-            android:inputType="number"
-            android:singleLine="true"
-            android:key="@string/pref_sensors_key_samplingPeriod_cells"
-            android:maxLines="1"
-            android:maxLength="5"
-            android:title="@string/pref_sensors_title_cells_samplingPeriod" />
-
-        <SwitchPreference
-            android:dependency="@string/pref_sensors_key_enabled_cells"
-            android:defaultValue="true"
-            android:key="@string/pref_sensors_key_sync_cells"
             android:title="@string/pref_sensors_title_remoteSync" />
     </PreferenceCategory>
 
@@ -278,29 +324,6 @@
             android:dependency="@string/pref_sensors_key_enabled_humidity"
             android:defaultValue="true"
             android:key="@string/pref_sensors_key_sync_humidity"
-            android:title="@string/pref_sensors_title_remoteSync" />
-    </PreferenceCategory>
-
-    <PreferenceCategory android:title="@string/pref_sensors_category_WiFi" >
-        <SwitchPreference
-            android:defaultValue="true"
-            android:key="@string/pref_sensors_key_enabled_WiFi"
-            android:title="@string/pref_sensors_title_WiFi" />
-
-        <EditTextPreference
-            android:dependency="@string/pref_sensors_key_enabled_WiFi"
-            android:defaultValue="1"
-            android:inputType="number"
-            android:singleLine="true"
-            android:key="@string/pref_sensors_key_samplingPeriod_WiFi"
-            android:maxLines="1"
-            android:maxLength="5"
-            android:title="@string/pref_sensors_title_WiFi_samplingPeriod" />
-
-        <SwitchPreference
-            android:dependency="@string/pref_sensors_key_enabled_WiFi"
-            android:defaultValue="true"
-            android:key="@string/pref_sensors_key_sync_WiFi"
             android:title="@string/pref_sensors_title_remoteSync" />
     </PreferenceCategory>
 
