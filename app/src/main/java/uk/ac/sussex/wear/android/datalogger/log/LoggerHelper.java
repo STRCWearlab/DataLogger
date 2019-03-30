@@ -31,7 +31,7 @@ import java.io.File;
  * Created by fjordonez on 13/10/16.
  */
 
-// class for storing logs
+// class for storing logs in log files, creating directories
 
 public final class LoggerHelper {
 

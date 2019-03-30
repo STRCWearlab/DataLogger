@@ -60,7 +60,42 @@ public class DataCollectors {
 
         // Initialization of collectors objects array
         mCollectors = new ArrayList<>();
-        
+
+        // Measures the status of the cellular network in number of cells and signal strength
+        if (SharedPreferencesHelper.isEnabledCellsInfo(context)){
+            try{
+                mCollectors.add(new CellsInfoDataCollector(context, sessionName,
+                        Constants.SENSOR_NAME_CELL,
+                        SharedPreferencesHelper.getSamplingPeriodCellsInfo(context),
+                        nanosOffset,
+                        SharedPreferencesHelper.getLogFilesMaxsize(context)));
+            } catch (Exception e){
+                Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_CELL + " data collector: " + e.getMessage());
+            }
+        }
+
+        // Measures the status of the WiFi networks
+        if (SharedPreferencesHelper.isEnabledWiFi(context)){
+            mCollectors.add(new WiFiDataCollector(context, sessionName,
+                    Constants.SENSOR_NAME_WIFI,
+                    SharedPreferencesHelper.getSamplingPeriodWiFiInfo(context),
+                    nanosOffset,
+                    SharedPreferencesHelper.getLogFilesMaxsize(context)));
+        }
+
+        // Measures the status of the Bluetooth networks
+        if (SharedPreferencesHelper.isEnabledBluetooth(context)){
+            try{
+            mCollectors.add(new BluetoothDataCollector(context, sessionName,
+                    Constants.SENSOR_NAME_BLUETOOTH,
+                    SharedPreferencesHelper.getSamplingPeriodBluetoothInfo(context),
+                    nanosOffset,
+                    SharedPreferencesHelper.getLogFilesMaxsize(context)));
+            } catch (Exception e){
+                Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " data collector: " + e.getMessage());
+            }
+        }
+
         // Measures the acceleration force in m/s2 that is applied to a device on all three physical axes (x, y, and z), including the force of gravity.
         // SensorEvent.values[0]	Acceleration force along the x axis (including gravity).
         // SensorEvent.values[1]	Acceleration force along the y axis (including gravity).
@@ -132,18 +167,7 @@ public class DataCollectors {
                     SharedPreferencesHelper.getLogFilesMaxsize(context)));
         }
 
-        // Measures the status of the cellular network in number of cells and signal strength
-        if (SharedPreferencesHelper.isEnabledCellsInfo(context)){
-            try{
-                mCollectors.add(new CellsInfoDataCollector(context, sessionName,
-                        Constants.SENSOR_NAME_CELL,
-                        SharedPreferencesHelper.getSamplingPeriodCellsInfo(context),
-                        nanosOffset,
-                        SharedPreferencesHelper.getLogFilesMaxsize(context)));
-            } catch (Exception e){
-                Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_CELL + " data collector: " + e.getMessage());
-            }
-        }
+
 
         // Measures the status of the cellular network in number of cells and signal strength (deprecated version)
         if (SharedPreferencesHelper.isEnabledDeprCellsInfo(context)){
@@ -229,14 +253,7 @@ public class DataCollectors {
             }
         }
 
-        // Measures the status of the WiFi networks
-        if (SharedPreferencesHelper.isEnabledWiFi(context)){
-            mCollectors.add(new WiFiDataCollector(context, sessionName,
-                    Constants.SENSOR_NAME_WIFI,
-                    SharedPreferencesHelper.getSamplingPeriodWiFiInfo(context),
-                    nanosOffset,
-                    SharedPreferencesHelper.getLogFilesMaxsize(context)));
-        }
+
 
         // Measures position of the device relative to the earth's frame of reference (specifically,
         // the magnetic north pole).

@@ -22,26 +22,198 @@
 
 package uk.ac.sussex.wear.android.datalogger.collector;
 
-// child clas for collecting Bluetooth data
 
-public class BluetoothDataCollector extends AbstractDataCollector{
+import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
+import android.content.Context;
+import android.os.Handler;
+import android.os.SystemClock;
+import android.util.Log;
+
+import uk.ac.sussex.wear.android.datalogger.Constants;
+import uk.ac.sussex.wear.android.datalogger.R;
+import uk.ac.sussex.wear.android.datalogger.collector.BTHelper.DeviceAdapter;
+import uk.ac.sussex.wear.android.datalogger.collector.BTHelper.ScannedDevice;
+import uk.ac.sussex.wear.android.datalogger.log.CustomLogger;
+import android.app.Activity;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+// child class for collecting Bluetooth data
+// functionality from iBeaconDetector https://github.com/youten/iBeaconDetector
+
+public class BluetoothDataCollector extends AbstractDataCollector implements BluetoothAdapter.LeScanCallback{
+
+    private static final String TAG = BluetoothDataCollector.class.getSimpleName();
+
+    private CustomLogger logger = null;
+
+    private int mSamplingPeriodUs;
+
+    private Context mContext;
+
+    // Timer to manage specific sampling rates
+    private Handler mTimerHandler = null;
+    private Runnable mTimerRunnable = null;
+
+    //needed Bluetooth variables
+    private BluetoothAdapter mBTAdapter;
+    private boolean mIsScanning;
+    private DeviceAdapter mDeviceAdapter;
+    private BluetoothManager mBTManager;
+
+    @SuppressLint("ServiceCast")
+    public BluetoothDataCollector(Context context, String sessionName, String sensorName, int samplingPeriodUs, long nanosOffset, int logFileMaxSize) {
+
+        mSensorName = sensorName;
+        String path = sessionName + File.separator + mSensorName + "_" + sessionName;
+
+        logger = new CustomLogger(context, path, sessionName, mSensorName, "txt", false, mNanosOffset, logFileMaxSize);
+
+        mSamplingPeriodUs = samplingPeriodUs;
+
+        mBTManager = (BluetoothManager) context.getSystemService(context.BLUETOOTH_SERVICE);
+
+        mContext = context;
+
+        // Offset to match timestamps both in master and slaves devices
+        mNanosOffset = nanosOffset;
+
+        if (mSamplingPeriodUs > 0) {
+            Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test1");
+            mTimerHandler = new Handler();
+            Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test4");
+            mTimerRunnable = new Runnable() {
+                // still problems here !!! run() seems to not work properly. Log doesn't get called
+                @Override
+                public void run() {
+                    Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test2");
+                    logBluetoothInfo(mDeviceAdapter.getScanList());
+                    int millis = 1000 / mSamplingPeriodUs;
+                    mTimerHandler.postDelayed(this, millis);
+                }
+            };
+        } else {
+            Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test3");
+            mDeviceAdapter = new DeviceAdapter(this, 0, null);
+        }
+
+    }
+
+    private void init() {
+        /*// BLE check
+        if (!BleUtil.isBLESupported(this)) {
+            Toast.makeText(this, R.string.ble_not_supported, Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }*/
+
+        // BT check
+        BluetoothManager manager = (BluetoothManager) this.getSystemService(Context.BLUETOOTH_SERVICE);
+        if (manager != null) {
+            mBTAdapter = manager.getAdapter();
+        }
+        if (mBTAdapter == null) {
+            Toast.makeText(this, R.string.bt_not_supported, Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
+/*        // init listview
+        ListView deviceListView = (ListView) findViewById(R.id.list);
+        deviceListView.setAdapter(mDeviceAdapter);
+        stopScan();*/
+
+        mDeviceAdapter = new DeviceAdapter(this,0,
+                new ArrayList<ScannedDevice>());
+
+    }
+
+    private void logBluetoothInfo(List<ScannedDevice> scanList){
+        // System local time in millis
+        long currentMillis = (new Date()).getTime();
+
+        // System nanoseconds since boot, including time spent in sleep.
+        long nanoTime = SystemClock.elapsedRealtimeNanos() + mNanosOffset;
+
+        String message = String.format("%s", currentMillis) + ";"
+                + String.format("%s", nanoTime) + ";"
+                + String.format("%s", mNanosOffset) + ";"
+                + scanList.size();
+
+        for (ScannedDevice scan : scanList){
+            // Get BLE Beacon Hex Info out of scanRecord
+            String scanRecord = scan.getScanRecordHexString();
+
+            message += ";"
+                    /*+ scanRecord;*/
+                    + "Hallo!";
+        }
+        logger.log(message);
+        logger.log(System.lineSeparator());
+    }
+
     @Override
     public void start() {
-
+        Log.i(TAG, "start:: Starting listener for sensor: " + getSensorName());
+        if ((mBTAdapter != null) && (!mIsScanning)) {
+            mBTAdapter.startLeScan(this);
+            mIsScanning = true;
+        }
+        /*if (mWiFiInfoReceiver != null){
+            mContext.registerReceiver(mWiFiInfoReceiver,
+                    new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+        } else {
+            mTimerHandler.postDelayed(mTimerRunnable, 0);
+        }*/
+        logger.start();
     }
 
     @Override
     public void stop() {
-
+        Log.i(TAG,"stop:: Stopping listener for sensor " + getSensorName());
+        if (mBTAdapter != null) {
+            mBTAdapter.stopLeScan(this);
+        }
+        mIsScanning = false;
+        /*if (mWiFiInfoReceiver != null) {
+            mContext.unregisterReceiver(mWiFiInfoReceiver);
+        } else {
+            mTimerHandler.removeCallbacks(mTimerRunnable);
+        }*/
+        logger.stop();
     }
 
     @Override
     public void haltAndRestartLogging() {
-
+        logger.stop();
+        logger.resetByteCounter();
+        logger.start();
     }
 
     @Override
     public void updateNanosOffset(long nanosOffset) {
+        mNanosOffset = nanosOffset;
+    }
 
+    @Override
+    public void onLeScan(final BluetoothDevice newDeivce, final int newRssi,
+                         final byte[] newScanRecord) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                String summary = mDeviceAdapter.update(newDeivce, newRssi, newScanRecord);
+                if (summary != null) {
+                    getActionBar().setSubtitle(summary);
+                }
+            }
+        });
     }
 }

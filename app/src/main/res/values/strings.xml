@@ -41,6 +41,10 @@
     <string name="ui_dialog_bluetooth_none_paired">No devices have been paired</string>
     <string name="ui_dialog_bluetooth_none_found">No devices found</string>
     <string name="ui_dialog_bluetooth_scanning">Scanning for devices...</string>
+    <!--BLE support-->
+    <string name="ble_not_supported">BLE not supported on this device.</string>
+    <string name="bt_not_supported">Bluetooth not supported on this device.</string>
+    <string name="bt_not_enabled">Bluetooth is not enabled, turn it on.</string>
 
     <string-array name="ui_bluetooth_list_state">
         <item>not supported</item>

@@ -205,7 +205,7 @@ public class DataLoggerService extends Service {
                     // the bluetooth connection tries to reconnect
                     int bluetoothState = mBluetoothAdapter.isEnabled() ? Constants.BLUETOOTH_STATE_ENABLED : Constants.BLUETOOTH_STATE_DISABLED;
                     Log.d(TAG, "Calling updateBluetoothState in connection lost with state " + bluetoothState);
-                    updateBluetoothState(bluetoothState);
+                    /*updateBluetoothState(bluetoothState);*/
                     break;
 //                case Constants.BLUETOOTH_MESSAGE_WRITE:
 //                    byte[] writeBuf = (byte[]) msg.obj;
@@ -314,11 +314,11 @@ public class DataLoggerService extends Service {
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        if (mBluetoothAdapter == null) { // Device does not support Bluetooth
+        /*if (mBluetoothAdapter == null) { // Device does not support Bluetooth
             updateBluetoothState(Constants.BLUETOOTH_STATE_NOT_SUPPORTED);
         } else {
             registerReceiver(mBluetoothStateReceiver, new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED));
-        }
+        }*/
     }
 
     @Override
@@ -347,7 +347,7 @@ public class DataLoggerService extends Service {
     }
 
 
-    private final BroadcastReceiver mBluetoothStateReceiver = new BroadcastReceiver() {
+   /* private final BroadcastReceiver mBluetoothStateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
@@ -365,7 +365,7 @@ public class DataLoggerService extends Service {
                 }
             }
         }
-    };
+    };*/
 
     private void haltAndRestartLogging() {
         if (mDataCollectors != null) {
@@ -774,12 +774,12 @@ public class DataLoggerService extends Service {
                         updateBluetoothState(bluetoothState);
                     }
                     break;*/
-                case CommandBase.COMMAND_BLUETOOTH_CONNECT:
+                /*case CommandBase.COMMAND_BLUETOOTH_CONNECT:
                     if (!itr.hasNext())
                         throw new Exception("Command '" + comm + "' is malformed or missing parameters");
                     mMasterAddress = itr.next();
                     //mHandler.post(connectTimerRunnable);
-                    break;
+                    break;*/
                 case CommandBase.COMMAND_FILES_UPLOAD_START:
                     mFileUploader = FileUploader.getInstance(this, mHandler);
                     mFileUploader.startUpload();
@@ -880,13 +880,13 @@ public class DataLoggerService extends Service {
         }
     }
 
-    public void updateBluetoothState(final int state) {
+    /*public void updateBluetoothState(final int state) {
 
         String[] bluetoothStateList = SharedPreferencesHelper.getBluetoothStateList(this);
         Log.d(TAG, "::updateBluetoothState Updating bluetooth with state: " + bluetoothStateList[state]);
 
         SharedPreferencesHelper.setBluetoothStatus(this, state);
-        /*switch (state) {
+        *//*switch (state) {
             case Constants.BLUETOOTH_STATE_DISABLED:
                 mHandler.removeCallbacks(connectTimerRunnable);
                 break;
@@ -917,15 +917,15 @@ public class DataLoggerService extends Service {
                 }
 
                 break;
-        }*/
+        }*//*
     }
-
+*/
 
     public void onDestroy() {
         // Cleanup service before destruction
         super.onDestroy();
         stopDataCollection();
-        unregisterReceiver(mBluetoothStateReceiver);
+        /*unregisterReceiver(mBluetoothStateReceiver);*/
         stopForeground(true);
 
         if (wakeLock != null && wakeLock.isHeld())

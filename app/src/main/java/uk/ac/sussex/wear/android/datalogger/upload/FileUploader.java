@@ -240,6 +240,18 @@ public class FileUploader {
         // The files containing activities recognized from the API must be uploaded
         addFilesToUpload(DataLoggerDataSource.selectUnsyncLogFiles(mContext, Constants.SENSOR_NAME_API_HAR));
 
+        if (SharedPreferencesHelper.toSyncCellsInfo(mContext)){
+            addFilesToUpload(DataLoggerDataSource.selectUnsyncLogFiles(mContext, Constants.SENSOR_NAME_CELL));
+        }
+
+        if (SharedPreferencesHelper.toSyncWiFi(mContext)){
+            addFilesToUpload(DataLoggerDataSource.selectUnsyncLogFiles(mContext, Constants.SENSOR_NAME_WIFI));
+        }
+
+        if (SharedPreferencesHelper.toSyncBluetooth(mContext)){
+            addFilesToUpload(DataLoggerDataSource.selectUnsyncLogFiles(mContext, Constants.SENSOR_NAME_BLUETOOTH));
+        }
+
         if (SharedPreferencesHelper.toSyncAccelerometer(mContext)) {
             addFilesToUpload(DataLoggerDataSource.selectUnsyncLogFiles(mContext, Constants.SENSOR_NAME_ACC));
         }
@@ -260,9 +272,6 @@ public class FileUploader {
             addFilesToUpload(DataLoggerDataSource.selectUnsyncLogFiles(mContext, Constants.SENSOR_NAME_BAT));
         }
 
-        if (SharedPreferencesHelper.toSyncCellsInfo(mContext)){
-            addFilesToUpload(DataLoggerDataSource.selectUnsyncLogFiles(mContext, Constants.SENSOR_NAME_CELL));
-        }
 
         if (SharedPreferencesHelper.toSyncLocation(mContext)){
             addFilesToUpload(DataLoggerDataSource.selectUnsyncLogFiles(mContext, Constants.SENSOR_NAME_LOC));
@@ -288,9 +297,7 @@ public class FileUploader {
             addFilesToUpload(DataLoggerDataSource.selectUnsyncLogFiles(mContext, Constants.SENSOR_NAME_HUM));
         }
 
-        if (SharedPreferencesHelper.toSyncWiFi(mContext)){
-            addFilesToUpload(DataLoggerDataSource.selectUnsyncLogFiles(mContext, Constants.SENSOR_NAME_WIFI));
-        }
+
 
         if (SharedPreferencesHelper.toSyncOrientation(mContext)){
             addFilesToUpload(DataLoggerDataSource.selectUnsyncLogFiles(mContext, Constants.SENSOR_NAME_ORIEN));

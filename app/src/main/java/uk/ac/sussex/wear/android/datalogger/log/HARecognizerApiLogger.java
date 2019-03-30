@@ -33,7 +33,7 @@ import java.util.HashMap;
 
 import uk.ac.sussex.wear.android.datalogger.Constants;
 
-// child class for logging HAREcognizerApi
+// child class for logging HARecognizerApi
 
 public class HARecognizerApiLogger extends CustomLogger {
 

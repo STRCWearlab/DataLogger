@@ -36,6 +36,7 @@ import java.io.File;
 import java.util.Date;
 import java.util.List;
 
+import uk.ac.sussex.wear.android.datalogger.Constants;
 import uk.ac.sussex.wear.android.datalogger.log.CustomLogger;
 
 // child class for collecting wifi data
@@ -77,16 +78,19 @@ public class WiFiDataCollector extends AbstractDataCollector {
         mNanosOffset = nanosOffset;
 
         if (mSamplingPeriodUs > 0) {
+            Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_WIFI + " test");
             mTimerHandler = new Handler();
             mTimerRunnable = new Runnable() {
                 @Override
                 public void run() {
+                    Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_WIFI + " test");
                     logWifiInfo(getScanList());
                     int millis = 1000 / mSamplingPeriodUs;
                     mTimerHandler.postDelayed(this, millis);
                 }
             };
         } else {
+            Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_WIFI + " test2");
             mWiFiInfoReceiver = new WiFiInfoReceiver();
         }
 
@@ -95,7 +99,7 @@ public class WiFiDataCollector extends AbstractDataCollector {
     private List<ScanResult> getScanList(){
         synchronized (this) {
             return mWifiManager.getScanResults();
-        }
+    }
     }
 
     private void logWifiInfo(List<ScanResult> scanList){
