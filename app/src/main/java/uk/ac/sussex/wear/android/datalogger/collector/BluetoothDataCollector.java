@@ -25,9 +25,15 @@ package uk.ac.sussex.wear.android.datalogger.collector;
 
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
+import android.bluetooth.le.BluetoothLeScanner;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
@@ -63,8 +69,11 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
     private Handler mTimerHandler = null;
     private Runnable mTimerRunnable = null;
 
+    // Receiver class for monitoring changes in WiFi states
+    private BluetoothInfoReceiver mBTInfoReceiver;
+
     //needed Bluetooth variables
-    private BluetoothAdapter mBTAdapter;
+    private BluetoothAdapter mBTAdapter = null;
     private boolean mIsScanning;
     private DeviceAdapter mDeviceAdapter;
     private BluetoothManager mBTManager;
@@ -90,8 +99,12 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
             Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test1");
             mTimerHandler = new Handler();
             Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test4");
+            // trying to write in txt file
+            /*String message = "Hallo!";
+            logger.log(message);*/
             mTimerRunnable = new Runnable() {
                 // still problems here !!! run() seems to not work properly. Log doesn't get called
+                // no BT txt files are written
                 @Override
                 public void run() {
                     Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test2");
@@ -102,13 +115,15 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
             };
         } else {
             Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test3");
-            mDeviceAdapter = new DeviceAdapter(this, 0, null);
+            mBTInfoReceiver = new BluetoothInfoReceiver();
         }
 
     }
 
-    private void init() {
-        /*// BLE check
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        /*not needed !
+        // BLE check
         if (!BleUtil.isBLESupported(this)) {
             Toast.makeText(this, R.string.ble_not_supported, Toast.LENGTH_SHORT).show();
             finish();
@@ -116,9 +131,10 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
         }*/
 
         // BT check
-        BluetoothManager manager = (BluetoothManager) this.getSystemService(Context.BLUETOOTH_SERVICE);
-        if (manager != null) {
-            mBTAdapter = manager.getAdapter();
+        // already initialised
+        // mBTManager = (BluetoothManager) this.getSystemService(Context.BLUETOOTH_SERVICE);
+        if (mBTManager != null) {
+            mBTAdapter = mBTManager.getAdapter();
         }
         if (mBTAdapter == null) {
             Toast.makeText(this, R.string.bt_not_supported, Toast.LENGTH_SHORT).show();
@@ -126,7 +142,8 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
             return;
         }
 
-/*        // init listview
+        // not needed !
+/*      // init listview
         ListView deviceListView = (ListView) findViewById(R.id.list);
         deviceListView.setAdapter(mDeviceAdapter);
         stopScan();*/
@@ -142,7 +159,7 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
 
         // System nanoseconds since boot, including time spent in sleep.
         long nanoTime = SystemClock.elapsedRealtimeNanos() + mNanosOffset;
-
+        Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test6");
         String message = String.format("%s", currentMillis) + ";"
                 + String.format("%s", nanoTime) + ";"
                 + String.format("%s", mNanosOffset) + ";"
@@ -160,34 +177,49 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
         logger.log(System.lineSeparator());
     }
 
+    private class BluetoothInfoReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            logBluetoothInfo(mDeviceAdapter.getScanList());
+        }
+    }
+
     @Override
     public void start() {
         Log.i(TAG, "start:: Starting listener for sensor: " + getSensorName());
+
+        // if query from iBeaconDetector
         if ((mBTAdapter != null) && (!mIsScanning)) {
             mBTAdapter.startLeScan(this);
             mIsScanning = true;
         }
-        /*if (mWiFiInfoReceiver != null){
-            mContext.registerReceiver(mWiFiInfoReceiver,
-                    new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
-        } else {
+        // if query from wifi, has been adapted for bluetooth, is currently not working
+        /*if (mBTInfoReceiver != null){
+            mContext.registerReceiver(mBTInfoReceiver,
+                    new IntentFilter( ));//something is missing here
+        }else {
             mTimerHandler.postDelayed(mTimerRunnable, 0);
         }*/
+
         logger.start();
     }
 
     @Override
     public void stop() {
         Log.i(TAG,"stop:: Stopping listener for sensor " + getSensorName());
+
         if (mBTAdapter != null) {
             mBTAdapter.stopLeScan(this);
         }
         mIsScanning = false;
-        /*if (mWiFiInfoReceiver != null) {
-            mContext.unregisterReceiver(mWiFiInfoReceiver);
+
+        // if query from wifi, has been adapted for bluetooth, is currently not working
+        /*if (mBTInfoReceiver != null) {
+            mContext.unregisterReceiver(mBTInfoReceiver);
         } else {
             mTimerHandler.removeCallbacks(mTimerRunnable);
         }*/
+
         logger.stop();
     }
 

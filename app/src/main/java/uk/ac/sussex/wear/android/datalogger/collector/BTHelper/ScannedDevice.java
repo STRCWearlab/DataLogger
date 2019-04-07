@@ -59,24 +59,31 @@ public class ScannedDevice {
         }
 
         // バイト配列の２倍の長さの文字列バッファを生成。
+        // Generate a string buffer twice as long as a byte array.
         StringBuffer sb = new StringBuffer(bytes.length * 2);
 
         // バイト配列の要素数分、処理を繰り返す。
+        // Repeat the process for the number of elements in the byte array.
         for (int index = 0; index < bytes.length; index++) {
             // バイト値を自然数に変換。
+            // Convert byte values ​​to natural numbers.
             int bt = bytes[index] & 0xff;
 
             // バイト値が0x10以下か判定。
+            // Determine whether the byte value is 0x10 or less.
             if (bt < 0x10) {
                 // 0x10以下の場合、文字列バッファに0を追加。
+                // Add 0 to string buffer if it is less than 0x10.
                 sb.append("0");
             }
 
             // バイト値を16進数の文字列に変換して、文字列バッファに追加。
+            // Convert byte value to hexadecimal string and add to string buffer.
             sb.append(Integer.toHexString(bt).toUpperCase());
         }
 
-        /// 16進数の文字列を返す。
+        // 16進数の文字列を返す。
+        // Return a hexadecimal string.
         return sb.toString();
     }
 

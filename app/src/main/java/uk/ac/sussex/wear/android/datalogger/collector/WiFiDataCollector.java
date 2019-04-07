@@ -78,19 +78,19 @@ public class WiFiDataCollector extends AbstractDataCollector {
         mNanosOffset = nanosOffset;
 
         if (mSamplingPeriodUs > 0) {
-            Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_WIFI + " test");
+            /*Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_WIFI + " test");*/
             mTimerHandler = new Handler();
             mTimerRunnable = new Runnable() {
                 @Override
                 public void run() {
-                    Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_WIFI + " test");
+                    /*Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_WIFI + " test");*/
                     logWifiInfo(getScanList());
                     int millis = 1000 / mSamplingPeriodUs;
                     mTimerHandler.postDelayed(this, millis);
                 }
             };
         } else {
-            Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_WIFI + " test2");
+            /*Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_WIFI + " test2");*/
             mWiFiInfoReceiver = new WiFiInfoReceiver();
         }
 
@@ -142,13 +142,13 @@ public class WiFiDataCollector extends AbstractDataCollector {
         logger.log(message);
         logger.log(System.lineSeparator());
     }
-
     private class WiFiInfoReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             logWifiInfo(getScanList());
         }
     }
+
 
     @Override
     public void start(){
