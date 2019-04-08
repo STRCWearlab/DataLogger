@@ -85,7 +85,9 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
         String path = sessionName + File.separator + mSensorName + "_" + sessionName;
 
         logger = new CustomLogger(context, path, sessionName, mSensorName, "txt", false, mNanosOffset, logFileMaxSize);
-
+// trying to write in txt file
+            String message = "Hallo!";
+            logger.log(message);
         mSamplingPeriodUs = samplingPeriodUs;
 
         mBTManager = (BluetoothManager) context.getSystemService(context.BLUETOOTH_SERVICE);
@@ -99,9 +101,7 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
             Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test1");
             mTimerHandler = new Handler();
             Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test4");
-            // trying to write in txt file
-            /*String message = "Hallo!";
-            logger.log(message);*/
+
             mTimerRunnable = new Runnable() {
                 // still problems here !!! run() seems to not work properly. Log doesn't get called
                 // no BT txt files are written
@@ -121,6 +121,7 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
     }
 
     public void onCreate(Bundle savedInstanceState) {
+        Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test_oncreate");
         super.onCreate(savedInstanceState);
         /*not needed !
         // BLE check
@@ -154,6 +155,7 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
     }
 
     private void logBluetoothInfo(List<ScannedDevice> scanList){
+        Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test_logbtinfo");
         // System local time in millis
         long currentMillis = (new Date()).getTime();
 
@@ -186,6 +188,7 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
 
     @Override
     public void start() {
+        Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test_start");
         Log.i(TAG, "start:: Starting listener for sensor: " + getSensorName());
 
         // if query from iBeaconDetector
@@ -196,7 +199,7 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
         // if query from wifi, has been adapted for bluetooth, is currently not working
         /*if (mBTInfoReceiver != null){
             mContext.registerReceiver(mBTInfoReceiver,
-                    new IntentFilter( ));//something is missing here
+                    new IntentFilter(BluetoothDevice.ACTION_FOUND));//something is missing here
         }else {
             mTimerHandler.postDelayed(mTimerRunnable, 0);
         }*/
@@ -206,6 +209,7 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
 
     @Override
     public void stop() {
+        Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test_stop");
         Log.i(TAG,"stop:: Stopping listener for sensor " + getSensorName());
 
         if (mBTAdapter != null) {
@@ -225,6 +229,7 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
 
     @Override
     public void haltAndRestartLogging() {
+        Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test_halt");
         logger.stop();
         logger.resetByteCounter();
         logger.start();
@@ -238,6 +243,7 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
     @Override
     public void onLeScan(final BluetoothDevice newDeivce, final int newRssi,
                          final byte[] newScanRecord) {
+        Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test_onlescan");
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
