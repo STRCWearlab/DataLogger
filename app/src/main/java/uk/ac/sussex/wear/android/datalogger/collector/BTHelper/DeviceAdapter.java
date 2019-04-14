@@ -32,16 +32,15 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class DeviceAdapter extends ArrayList<ScannedDevice> { //extends ArrayAdapter
+public class DeviceAdapter {
 
     private List<ScannedDevice> mList;
 
-    public DeviceAdapter(@NonNull Context context, int resource,  List<ScannedDevice> objects) {
-     //   super(context, resource, objects);
+    public DeviceAdapter(List<ScannedDevice> objects) {
         mList = objects;
     }
 
-    public String update(BluetoothDevice newDevice, int rssi, byte[] scanRecord) {
+    public String updateDevice(BluetoothDevice newDevice, int rssi, byte[] scanRecord) {
         if ((newDevice == null) || (newDevice.getAddress() == null)) {
             return "";
         }
@@ -101,7 +100,6 @@ public class DeviceAdapter extends ArrayList<ScannedDevice> { //extends ArrayAda
     }
 
     public List<ScannedDevice> getScanList() {
-        synchronized (this) {
         return mList;
-    }}
+    }
 }

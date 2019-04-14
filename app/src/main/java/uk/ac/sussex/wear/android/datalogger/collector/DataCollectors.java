@@ -321,9 +321,13 @@ public class DataCollectors {
         }
 
         // All data collectors are started
-        for (AbstractDataCollector collector : mCollectors) {
-            Log.i(TAG, "Calling collector " + collector.getSensorName());
-            collector.start();
+        try{
+            for (AbstractDataCollector collector : mCollectors) {
+                Log.i(TAG, "Calling collector " + collector.getSensorName());
+                collector.start();
+            }
+        } catch (Exception e){
+            Log.e(TAG, "Error starting data collector: " + e.getMessage());
         }
     }
 

@@ -92,27 +92,6 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
         // call init
         init();
 
-        // call onCreate option 1
-        /*Bundle savedInstanceState = new Bundle();
-        onCreate(savedInstanceState);*/
-
-        // call onCreate option 2
-        //onCreate(new Bundle());
-       // mBTManager = (BluetoothManager) context.getSystemService(context.BLUETOOTH_SERVICE);
-
-        //initialise BTAdapter
-        /*if (mBTManager != null) {*/
-            //mBTAdapter = BluetoothAdapter.getDefaultAdapter();
-        //}
-        /*if (mBTAdapter == null) {
-            Toast.makeText(this, R.string.bt_not_supported, Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }*/
-
-        //initialise DeviceAdapter
-        /*mDeviceAdapter = new DeviceAdapter(this,0,
-                new ArrayList<ScannedDevice>());*/
         mContext = context;
 
         // Offset to match timestamps both in master and slaves devices
@@ -140,10 +119,6 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
         }
 
     }
-
-    /*public void onCreate(Bundle savedInstanceState) {
-        Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test_oncreate");
-        super.onCreate(savedInstanceState);*/
 
     private void init(){
         Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test_init");
@@ -174,7 +149,7 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
         deviceListView.setAdapter(mDeviceAdapter);
         stopScan();*/
 
-        mDeviceAdapter = new DeviceAdapter(this, R.id.activities_labels_ui, new ArrayList<ScannedDevice>());
+        mDeviceAdapter = new DeviceAdapter(new ArrayList<ScannedDevice>());
     }
 
     private void logBluetoothInfo(List<ScannedDevice> scanList){
@@ -190,14 +165,14 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
                 + String.format("%s", mNanosOffset) + ";"
                 + scanList.size();
 
-        /*for (ScannedDevice scan : scanList){
+        for (ScannedDevice scan : scanList){
             // Get BLE Beacon Hex Info out of scanRecord
             String scanRecord = scan.getScanRecordHexString();
 
             message += ";"
                     + scanRecord;
-        }*/
-        message += "Hello";
+        }
+        //message += "Hello";
         logger.log(message);
         logger.log(System.lineSeparator());
     }
@@ -264,16 +239,14 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
     }
 
     @Override
-    public void onLeScan(final BluetoothDevice newDeivce, final int newRssi,
+    public void onLeScan(final BluetoothDevice newDevice, final int newRssi,
                          final byte[] newScanRecord) {
-        Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test_onlescan");
+        //Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test_onlescan");
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                String summary = mDeviceAdapter.update(newDeivce, newRssi, newScanRecord);
-                if (summary != null) {
-                    getActionBar().setSubtitle(summary);
-                }
+                //Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " test_run_onlescan");
+                String summary = mDeviceAdapter.updateDevice(newDevice, newRssi, newScanRecord);
             }
         });
     }
