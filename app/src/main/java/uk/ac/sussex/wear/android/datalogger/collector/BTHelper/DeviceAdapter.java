@@ -27,16 +27,17 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.widget.ArrayAdapter;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class DeviceAdapter extends ArrayAdapter<ScannedDevice> {
+public class DeviceAdapter extends ArrayList<ScannedDevice> { //extends ArrayAdapter
 
     private List<ScannedDevice> mList;
 
     public DeviceAdapter(@NonNull Context context, int resource,  List<ScannedDevice> objects) {
-        super(context, resource, objects);
+     //   super(context, resource, objects);
         mList = objects;
     }
 
@@ -80,7 +81,7 @@ public class DeviceAdapter extends ArrayAdapter<ScannedDevice> {
             }
         });*/
 
-        notifyDataSetChanged();
+       // notifyDataSetChanged();
 
         // create summary
         int totalCount = 0;

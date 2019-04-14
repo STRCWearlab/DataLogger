@@ -23,11 +23,15 @@
 package uk.ac.sussex.wear.android.datalogger.collector;
 
 import android.content.Context;
+import android.os.Handler;
 import android.util.Log;
 
 import java.io.File;
 
 import uk.ac.sussex.wear.android.datalogger.log.CustomLogger;
+
+// child class for testing the txt file write function
+// class should only write "Hello" into txt file
 
 public class DummyDataCollector extends AbstractDataCollector {
 
@@ -35,37 +39,54 @@ public class DummyDataCollector extends AbstractDataCollector {
 
     private CustomLogger logger = null;
 
+    // Timer to manage specific sampling rates
+    private Handler mTimerHandler = null;
+    private Runnable mTimerRunnable = null;
+
     public DummyDataCollector(Context context, String sessionName, String sensorName, int samplingPeriodUs, long nanosOffset, int logFileMaxSize){
-        Log.e(TAG, "Error creating " + "DummyDataCollector" + " test_constructor");
+        //Log.e(TAG, "Error creating " + "DummyDataCollector" + " test_constructor");
         mSensorName = sensorName;
         String path = sessionName + File.separator + mSensorName + "_" + sessionName;
         logger = new CustomLogger(context, path, sessionName, mSensorName, "txt", false, nanosOffset, logFileMaxSize);
-        Log.e(TAG, "Error creating " + "DummyDataCollector" + " test_aftertxt");
-        logDummyInfo();
+        //Log.e(TAG, "Error creating " + "DummyDataCollector" + " test_aftertxt");
+        mTimerHandler = new Handler();
+        mTimerRunnable = new Runnable() {
+            @Override
+            public void run() {
+                //Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_WIFI + " test");
+                logDummyInfo();
+                int millis = 1000;
+                mTimerHandler.postDelayed(this, millis);
+            }
+        };
     }
 
     private void logDummyInfo(){
-        Log.e(TAG, "Error creating " + "DummyDataCollector" + " test_beforelog");
+        //Log.e(TAG, "Error creating " + "DummyDataCollector" + " test_beforelog");
         String message = "Hello";
-        logger.log("hello");
-        Log.e(TAG, "Error creating " + "DummyDataCollector" + " test_afterlog");
+        logger.log(message);
+        logger.log(System.lineSeparator());
+        //Log.e(TAG, "Error creating " + "DummyDataCollector" + " test_afterlog");
     }
 
     @Override
     public void start() {
-        Log.e(TAG, "Error creating " + "DummyDataCollector" + " test_start");
+        //Log.e(TAG, "Error creating " + "DummyDataCollector" + " test_start");
+     //   logDummyInfo();
+        mTimerHandler.postDelayed(mTimerRunnable, 0);
         logger.start();
     }
 
     @Override
     public void stop() {
-        Log.e(TAG, "Error creating " + "DummyDataCollector" + " test_stop");
+        //Log.e(TAG, "Error creating " + "DummyDataCollector" + " test_stop");
+        mTimerHandler.removeCallbacks(mTimerRunnable);
         logger.stop();
     }
 
     @Override
     public void haltAndRestartLogging() {
-        Log.e(TAG, "Error creating " + "DummyDataCollector" + " test_halt");
+        //Log.e(TAG, "Error creating " + "DummyDataCollector" + " test_halt");
         logger.stop();
         logger.resetByteCounter();
         logger.start();
@@ -73,6 +94,6 @@ public class DummyDataCollector extends AbstractDataCollector {
 
     @Override
     public void updateNanosOffset(long nanosOffset) {
-
+        mNanosOffset = nanosOffset;
     }
 }

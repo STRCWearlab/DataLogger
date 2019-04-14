@@ -61,6 +61,15 @@ public class DataCollectors {
         // Initialization of collectors objects array
         mCollectors = new ArrayList<>();
 
+        // Measures the status of the WiFi networks
+        if (SharedPreferencesHelper.isEnabledWiFi(context)){
+            mCollectors.add(new WiFiDataCollector(context, sessionName,
+                    Constants.SENSOR_NAME_WIFI,
+                    SharedPreferencesHelper.getSamplingPeriodWiFiInfo(context),
+                    nanosOffset,
+                    SharedPreferencesHelper.getLogFilesMaxsize(context)));
+        }
+
         // Measures the status of the cellular network in number of cells and signal strength
         if (SharedPreferencesHelper.isEnabledCellsInfo(context)){
             try{
@@ -74,14 +83,7 @@ public class DataCollectors {
             }
         }
 
-        // Measures the status of the WiFi networks
-        if (SharedPreferencesHelper.isEnabledWiFi(context)){
-            mCollectors.add(new WiFiDataCollector(context, sessionName,
-                    Constants.SENSOR_NAME_WIFI,
-                    SharedPreferencesHelper.getSamplingPeriodWiFiInfo(context),
-                    nanosOffset,
-                    SharedPreferencesHelper.getLogFilesMaxsize(context)));
-        }
+
 
         // Measures the status of the Bluetooth networks
         if (SharedPreferencesHelper.isEnabledBluetooth(context)){
@@ -97,10 +99,13 @@ public class DataCollectors {
             }
         }
 
-        // Calles DummyDataCollector
+        // Calls DummyDataCollector
             try{
                 Log.e(TAG, "Error creating " + "DummyDataCollector" + " test_datacoll");
-                mCollectors.add(new DummyDataCollector(context, sessionName, "Dummy", 1, nanosOffset, SharedPreferencesHelper.getLogFilesMaxsize(context)));
+                mCollectors.add(new DummyDataCollector(context, sessionName,
+                        "Dummy", 1,
+                        nanosOffset,
+                        SharedPreferencesHelper.getLogFilesMaxsize(context)));
             } catch (Exception e){
                 Log.e(TAG, "Error creating " + "Dummy" + " data collector: " + e.getMessage());
             }
