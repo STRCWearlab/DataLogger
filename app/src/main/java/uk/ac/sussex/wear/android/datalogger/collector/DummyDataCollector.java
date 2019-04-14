@@ -24,8 +24,6 @@ package uk.ac.sussex.wear.android.datalogger.collector;
 
 import android.content.Context;
 import android.os.Handler;
-import android.util.Log;
-
 import java.io.File;
 
 import uk.ac.sussex.wear.android.datalogger.log.CustomLogger;

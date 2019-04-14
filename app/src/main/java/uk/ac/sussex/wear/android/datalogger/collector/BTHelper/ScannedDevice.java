@@ -26,10 +26,13 @@ import android.bluetooth.BluetoothDevice;
 
 public class ScannedDevice {
 
-    /** BluetoothDevice */
+    /* BluetoothDevice */
     private BluetoothDevice mDevice;
-    /** Advertise Scan Record */
+    /* Advertise Scan Record */
     private byte[] mScanRecord;
+    /* RSSI */
+    private int mRssi;
+    private String mDevAddress;
 
     public ScannedDevice(BluetoothDevice device, int rssi, byte[] scanRecord, long now) {
         if (device == null) {
@@ -40,13 +43,25 @@ public class ScannedDevice {
         /*mDisplayName = device.getName();
         if ((mDisplayName == null) || (mDisplayName.length() == 0)) {
             mDisplayName = UNKNOWN;
-        }
-        mRssi = rssi;*/
+        }*/
+        mRssi = rssi;
         mScanRecord = scanRecord;
     }
 
     public BluetoothDevice getDevice() {
         return mDevice;
+    }
+
+    public int getRssi() {
+        return mRssi;
+    }
+
+    public void setRssi(int rssi) {
+        mRssi = rssi;
+    }
+
+    public void setAddress(String address){
+        mDevAddress = address;
     }
 
     public String getScanRecordHexString() {
