@@ -10,13 +10,14 @@ Application features:
   - Environmental sensors data as temperature, light, pressure and humidity;
   - Positioning sensors data such as location and satellites;
   - Networks connectivity data, as network cells and WiFi networks;
+  - Available Bluetooth beacons
   - Battery level
   - Microphone audio
   - Google activity recognition labels
 - Every sensors can be configured in the settings to enable/disable it, set the sampling frequency, the remote upload of its data.
 - Remote upload of data (`PHP_upload_script.txt` contains the PHP code for the server)
 - Multidevice (master-slaves) configuration
-- Bluetooth connection for synchronization among device of time and status (logging/no logging, labels, sublabels)
+- Bluetooth connection for synchronization among devices of time and status (logging/no logging, labels, sublabels)
 - Autostart at boot/reboot
 - Background logging using persistent notification
 - Logging of data on files (a new file is created at regular interval to reduce data loss)

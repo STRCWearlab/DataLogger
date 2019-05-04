@@ -36,7 +36,6 @@ import java.io.File;
 import java.util.Date;
 import java.util.List;
 
-import uk.ac.sussex.wear.android.datalogger.Constants;
 import uk.ac.sussex.wear.android.datalogger.log.CustomLogger;
 
 // child class for collecting wifi data
@@ -76,21 +75,17 @@ public class WiFiDataCollector extends AbstractDataCollector {
 
         // Offset to match timestamps both in master and slaves devices
         mNanosOffset = nanosOffset;
-        Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_WIFI + " test");
         if (mSamplingPeriodUs > 0) {
-            /*Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_WIFI + " test");*/
             mTimerHandler = new Handler();
             mTimerRunnable = new Runnable() {
                 @Override
                 public void run() {
-                    /*Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_WIFI + " test");*/
                     logWifiInfo(getScanList());
                     int millis = 1000 / mSamplingPeriodUs;
                     mTimerHandler.postDelayed(this, millis);
                 }
             };
         } else {
-            /*Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_WIFI + " test2");*/
             mWiFiInfoReceiver = new WiFiInfoReceiver();
         }
 
@@ -99,11 +94,10 @@ public class WiFiDataCollector extends AbstractDataCollector {
     private List<ScanResult> getScanList(){
         synchronized (this) {
             return mWifiManager.getScanResults();
-    }
+        }
     }
 
     private void logWifiInfo(List<ScanResult> scanList){
-        Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_WIFI + " test_log");
         // System local time in millis
         long currentMillis = (new Date()).getTime();
 
@@ -153,7 +147,6 @@ public class WiFiDataCollector extends AbstractDataCollector {
 
     @Override
     public void start(){
-        Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_WIFI + " test_start");
         Log.i(TAG, "start:: Starting listener for sensor: " + getSensorName());
 
         if (mWiFiInfoReceiver != null){
@@ -167,7 +160,6 @@ public class WiFiDataCollector extends AbstractDataCollector {
 
     @Override
     public void stop(){
-        Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_WIFI + " test_stop");
         Log.i(TAG,"stop:: Stopping listener for sensor " + getSensorName());
 
         if (mWiFiInfoReceiver != null) {
@@ -181,7 +173,6 @@ public class WiFiDataCollector extends AbstractDataCollector {
 
     @Override
     public void haltAndRestartLogging(){
-        Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_WIFI + " test_halt");
         logger.stop();
         logger.resetByteCounter();
         logger.start();
