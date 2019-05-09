@@ -60,7 +60,7 @@ public class BluetoothDataCollector extends AbstractDataCollector implements Blu
     private Handler mTimerHandler = null;
     private Runnable mTimerRunnable = null;
 
-    // Receiver class for monitoring changes in WiFi states
+    // Receiver class for monitoring changes in BT states
     private BluetoothInfoReceiver mBTInfoReceiver;
 
     //needed Bluetooth variables

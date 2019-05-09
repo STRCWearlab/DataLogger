@@ -62,11 +62,11 @@
                 android:value=".DisplayActivity" />
         </activity>
 
-        <!--<activity
+        <activity
             android:name=".bt.BluetoothDeviceListActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/ui_dialog_bluetooth_select_device"
-            android:theme="@android:style/Theme.Dialog"/>-->
+            android:theme="@android:style/Theme.Dialog"/>
 
         <activity
             android:name=".FlagEventActivity"
