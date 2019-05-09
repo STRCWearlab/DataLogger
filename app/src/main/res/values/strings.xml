@@ -272,7 +272,7 @@
 
     <string name="pref_sync_category_remote_server">Remote server</string>
     <string name="pref_sync_title_server_address">Server address</string>
-    <string name="pref_sync_default_server_address">"http://141.100.70.109/upload.php"</string>
+    <string name="pref_sync_default_server_address">"http://0.0.0.0/upload.php"</string>
     <string name="pref_sync_key_server_address">PREF_GENERAL_SERVER_ADDRS_KEY</string>
     <string name="pref_sync_title_server_syncMode">Files sync</string>
     <string name="pref_sync_key_server_syncMode">PREF_GENERAL_SERVER_SYNCM_KEY</string>

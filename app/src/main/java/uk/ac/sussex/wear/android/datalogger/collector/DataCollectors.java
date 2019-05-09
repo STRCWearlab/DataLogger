@@ -83,8 +83,6 @@ public class DataCollectors {
             }
         }
 
-
-
         // Measures the status of the Bluetooth networks
         if (SharedPreferencesHelper.isEnabledBluetooth(context)){
             try{

@@ -36,11 +36,11 @@
         android:orderInCategory="200"
         android:title="@string/menu_action_stats"
         app:showAsAction="never" />
-    <!--<item
+    <item
         android:id="@+id/action_pair"
         android:orderInCategory="250"
         android:title="@string/menu_action_pair"
-        app:showAsAction="never" />-->
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_upload"
         android:orderInCategory="300"

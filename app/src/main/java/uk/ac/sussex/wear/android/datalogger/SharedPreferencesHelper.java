@@ -537,35 +537,35 @@ public final class SharedPreferencesHelper {
     /**
      * Retrieves the int from SharedPreferences that controls the slaves timeout.
      */
-    /*public static int getSlaveConnectionTimeout(Context context){
+    public static int getSlaveConnectionTimeout(Context context){
         return Integer.parseInt(getSharedPrefsInstance(context)
                 .getString(context.getResources().getString(R.string.pref_sync_key_slave_timeout),
                         context.getResources().getString(R.string.pref_sync_default_slave_timeout)));
-    }*/
+    }
 
 
-    /*public static boolean isEnabledKeepalive(Context context){
+    public static boolean isEnabledKeepalive(Context context){
         return getSharedPrefsInstance(context)
                 .getBoolean(context.getResources().getString(R.string.pref_sync_key_enabled_keepalive), true);
-    }*/
+    }
 
     /**
      * Retrieves the int from SharedPreferences that controls the master keepalive interval
      */
-    /*public static int getMasterKeepaliveInterval(Context context){
+    public static int getMasterKeepaliveInterval(Context context){
         return Integer.parseInt(getSharedPrefsInstance(context)
                 .getString(context.getResources().getString(R.string.pref_sync_key_master_keepalive),
                         context.getResources().getString(R.string.pref_sync_default_master_keepalive)));
-    }*/
+    }
 
     /**
      * Retrieves the int from SharedPreferences that controls the slaves keepalive interval
      */
-    /*public static int getSlaveKeepaliveInterval(Context context){
+    public static int getSlaveKeepaliveInterval(Context context){
         return Integer.parseInt(getSharedPrefsInstance(context)
                 .getString(context.getResources().getString(R.string.pref_sync_key_slave_keepalive),
                         context.getResources().getString(R.string.pref_sync_default_slave_keepalive)));
-    }*/
+    }
 
     /**
      * Retrieves the String from SharedPreferences that contains the date of the last completed server upload.
