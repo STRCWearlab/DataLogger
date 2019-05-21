@@ -55,7 +55,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-//import uk.ac.sussex.wear.android.datalogger.bt.BluetoothDeviceListActivity;
+import uk.ac.sussex.wear.android.datalogger.bt.BluetoothDeviceListActivity;
 import uk.ac.sussex.wear.android.datalogger.data.CommandBTC;
 import uk.ac.sussex.wear.android.datalogger.data.CommandBTS;
 import uk.ac.sussex.wear.android.datalogger.data.CommandDCE;
@@ -171,9 +171,9 @@ public class DisplayActivity extends AppCompatActivity implements DataLoggerStat
         /******************************************************************************************/
 
         // Setting listener for bluetooth button
-        /*mBluetoothButton = (Button) findViewById(R.id.ui_bluetooth_status_button);
+        mBluetoothButton = (Button) findViewById(R.id.ui_bluetooth_status_button);
         assert mBluetoothButton != null;
-        mBluetoothButton.setOnClickListener(mClickBluetoothButton);*/
+        mBluetoothButton.setOnClickListener(mClickBluetoothButton);
 
         /******************************************************************************************/
         // Starting main DataLogger service with 'Bluetooth start' command
@@ -229,12 +229,12 @@ public class DisplayActivity extends AppCompatActivity implements DataLoggerStat
 
 
         // Update the bluetooth RelativeLayout based on the bluetooth adapter status.
-        /*refreshBluetoothLayout();
+        refreshBluetoothLayout();
 
         if (mDeviceLocation == Constants.DEVICE_LOCATION_HAND) { //if this is the master device
             // Update the TextView which shows the connectivity status of the slave devices.
             refreshBluetoothSlavesLayout();
-        }*/
+        }
 
         // Update the main UI layout based on the device profile (master or slave)
         refreshContentLayout();
@@ -257,7 +257,7 @@ public class DisplayActivity extends AppCompatActivity implements DataLoggerStat
     /**********************************************************************************************/
     /**********************************************************************************************/
 
-    /*public void refreshBluetoothSlavesLayout() {
+    public void refreshBluetoothSlavesLayout() {
         int value = SharedPreferencesHelper.getSlavesConnected(this);
         int[] bitmasks = new int[]{0x4, 0x2, 0x1};
         int[] layouts = new int[]{R.id.ui_bluetooth_status_slaves_torso,
@@ -270,13 +270,13 @@ public class DisplayActivity extends AppCompatActivity implements DataLoggerStat
             textView.setTextColor(ContextCompat.getColor(DisplayActivity.this,
                     isConnected ? R.color.colorBtSlavesOn : R.color.colorBtSlavesOff));
         }
-    }*/
+    }
 
     /**
      * The layout of the bluetooth controls must change based on the device location and the state
      * of the bluetooth adapter.
      */
-    /*private void refreshBluetoothLayout() {
+    private void refreshBluetoothLayout() {
         // Current state of the bluetooth adapter
         int state = SharedPreferencesHelper.getBluetoothStatus(this);
         boolean slavesVisible = true;
@@ -322,7 +322,7 @@ public class DisplayActivity extends AppCompatActivity implements DataLoggerStat
             layoutButton.getChildAt(i).setVisibility(buttonVisible ? View.VISIBLE : View.GONE);
         }
 
-    }*/
+    }
 
     public void updateTextviewSwitch(boolean isActive, int id) {
         TextView customText = (TextView) findViewById(id);
@@ -495,13 +495,13 @@ public class DisplayActivity extends AppCompatActivity implements DataLoggerStat
             }
         }
 
-        /*mBluetoothButton = (Button) findViewById(R.id.ui_bluetooth_status_button);
+        mBluetoothButton = (Button) findViewById(R.id.ui_bluetooth_status_button);
         if (mDeviceLocation == Constants.DEVICE_LOCATION_HAND) {
             mBluetoothButton.setVisibility(View.INVISIBLE);
             if (menu != null)
                 menu.findItem(R.id.action_pair).setVisible(true);
         } else if (menu != null)
-            menu.findItem(R.id.action_pair).setVisible(false);*/
+            menu.findItem(R.id.action_pair).setVisible(false);
     }
 
     // IMPORTANT ! this creates the menu button
@@ -510,10 +510,10 @@ public class DisplayActivity extends AppCompatActivity implements DataLoggerStat
         // Inflate the menu; this adds items to the action bar if it is present.
         this.menu = menu;
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        /*if (SharedPreferencesHelper.getDeviceLocationValue(this) != Constants.DEVICE_LOCATION_HAND)
+        if (SharedPreferencesHelper.getDeviceLocationValue(this) != Constants.DEVICE_LOCATION_HAND)
             menu.findItem(R.id.action_pair).setVisible(false);
         else
-            menu.findItem(R.id.action_pair).setVisible(true);*/
+            menu.findItem(R.id.action_pair).setVisible(true);
         return true;
     }
 
@@ -521,7 +521,7 @@ public class DisplayActivity extends AppCompatActivity implements DataLoggerStat
     /**********************************************************************************************/
 
 
-    /*View.OnClickListener mClickBluetoothButton = new View.OnClickListener() {
+    View.OnClickListener mClickBluetoothButton = new View.OnClickListener() {
 
         public void onClick(View v) {
             int state = SharedPreferencesHelper.getBluetoothStatus(DisplayActivity.this);
@@ -545,7 +545,7 @@ public class DisplayActivity extends AppCompatActivity implements DataLoggerStat
             }
         }
 
-    };*/
+    };
 
 
     @Override
@@ -652,11 +652,11 @@ public class DisplayActivity extends AppCompatActivity implements DataLoggerStat
                         .setNegativeButton("No", null)
                         .show();
                 return true;
-            /*case R.id.action_pair:
+            case R.id.action_pair:
                 Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
                 discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
                 startActivity(discoverableIntent);
-                return true;*/
+                return true;
 
             case R.id.action_stats:
                 Intent showStatsIntent = new Intent(this, ShowStatsActivity.class);
@@ -685,13 +685,13 @@ public class DisplayActivity extends AppCompatActivity implements DataLoggerStat
                         .putExtra(Constants.COMMAND_SERVICE_INTENT_KEY, new CommandBTS().getMessage()));
             }
 
-            /*if (key.equals(Constants.BLUETOOTH_STATE_KEY)) {
+            if (key.equals(Constants.BLUETOOTH_STATE_KEY)) {
                 refreshBluetoothLayout();
-            }*/
+            }
 
-            /*if (key.equals(Constants.BLUETOOTH_SLAVES_CONNECTED_KEY)) {
+            if (key.equals(Constants.BLUETOOTH_SLAVES_CONNECTED_KEY)) {
                 refreshBluetoothSlavesLayout();
-            }*/
+            }
 
             if (key.equals(Constants.DATA_COLLECTION_SESSION_OBJECT_KEY)) {
                 if (SharedPreferencesHelper.getDeviceLocationValue(DisplayActivity.this) != Constants.DEVICE_LOCATION_HAND)

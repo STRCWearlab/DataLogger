@@ -32,14 +32,14 @@
         android:singleLine="true"
         android:title="@string/pref_general_title_user_name" />
 
-    <!--<ListPreference
+    <ListPreference
         android:defaultValue="3"
         android:entries="@array/pref_general_list_device_location"
         android:entryValues="@array/pref_general_list_device_location_values"
         android:key="@string/pref_general_key_device_location"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
-        android:title="@string/pref_general_title_device_location" />-->
+        android:title="@string/pref_general_title_device_location" />
 
     <PreferenceCategory android:title="@string/pref_general_category_HAR_API" >
         <SwitchPreference

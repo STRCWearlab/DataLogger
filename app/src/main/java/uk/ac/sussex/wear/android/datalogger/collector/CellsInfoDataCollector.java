@@ -22,9 +22,12 @@
 
 package uk.ac.sussex.wear.android.datalogger.collector;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.support.v4.app.ActivityCompat;
 import android.telephony.CellIdentityCdma;
 import android.telephony.CellIdentityGsm;
 import android.telephony.CellIdentityLte;
@@ -70,8 +73,12 @@ public class CellsInfoDataCollector extends AbstractDataCollector {
     private Handler mTimerHandler = null;
     private Runnable mTimerRunnable = null;
 
+    private Context mcontext = null;
 
-    public CellsInfoDataCollector(Context context, String sessionName, String sensorName, int samplingPeriodUs, long nanosOffset, int logFileMaxSize){
+
+    public CellsInfoDataCollector(final Context context, String sessionName, String sensorName, int samplingPeriodUs, long nanosOffset, int logFileMaxSize) {
+
+        mcontext = context;
 
         mSensorName = sensorName;
         String path = sessionName + File.separator + mSensorName + "_" + sessionName;
@@ -99,6 +106,16 @@ public class CellsInfoDataCollector extends AbstractDataCollector {
                 @Override
                 public void run() {
                     // Returns all observed cell information from all radios on the device including the primary and neighboring cells.
+                    if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
                     logCellInfo(mTelephonyManager.getAllCellInfo());
                     int millis = 1000 / mSamplingPeriodUs;
                     mTimerHandler.postDelayed(this, millis);
@@ -110,7 +127,7 @@ public class CellsInfoDataCollector extends AbstractDataCollector {
 
     }
 
-    private void logCellInfo(List<CellInfo> cellInfo){
+    private void logCellInfo(List<CellInfo> cellInfo) {
         if (logger != null) {
             String message = getCellInfoString(cellInfo);
             logger.log(message);
@@ -126,7 +143,7 @@ public class CellsInfoDataCollector extends AbstractDataCollector {
         Log.i(TAG, "start:: Starting listener for sensor: " + getSensorName());
         logger.start();
 
-        if (mCellInfoListener != null){
+        if (mCellInfoListener != null) {
             mTelephonyManager.listen(mCellInfoListener, PhoneStateListener.LISTEN_CELL_INFO
                     | PhoneStateListener.LISTEN_SIGNAL_STRENGTHS
                     | PhoneStateListener.LISTEN_CELL_LOCATION);
@@ -137,7 +154,7 @@ public class CellsInfoDataCollector extends AbstractDataCollector {
 
     @Override
     public void stop() {
-        Log.i(TAG,"stop:: Stopping listener for sensor " + getSensorName());
+        Log.i(TAG, "stop:: Stopping listener for sensor " + getSensorName());
 
         if (mCellInfoListener != null) {
             mTelephonyManager.listen(mCellInfoListener, PhoneStateListener.LISTEN_NONE);
@@ -175,11 +192,21 @@ public class CellsInfoDataCollector extends AbstractDataCollector {
         }
 
         @Override
-        public void onCellLocationChanged(CellLocation location){
+        public void onCellLocationChanged(CellLocation location) {
             super.onCellLocationChanged(location);
 
             // getAllCellInfo() returns all observed cell information from all radios on the device including the primary and neighboring cells
             // This is preferred over using getCellLocation although for older devices this may return null in which case getCellLocation should be called.
+            if (ActivityCompat.checkSelfPermission(mcontext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
             logCellInfo(mTelephonyManager.getAllCellInfo());
         }
 
@@ -189,6 +216,16 @@ public class CellsInfoDataCollector extends AbstractDataCollector {
 
             // getAllCellInfo() returns all observed cell information from all radios on the device including the primary and neighboring cells
             // This is preferred over using getCellLocation although for older devices this may return null in which case getCellLocation should be called.
+            if (ActivityCompat.checkSelfPermission(mcontext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
             logCellInfo(mTelephonyManager.getAllCellInfo());
         }
     }
@@ -264,7 +301,7 @@ public class CellsInfoDataCollector extends AbstractDataCollector {
                 // Get the CDMA RSSI value in dBm
                 int cdmaDbm = cdmaStength.getCdmaDbm();
 
-                // Get the CDMkA Ec/Io value in dB*10
+                // Get the CDMA Ec/Io value in dB*10
                 int cdmaEcio = cdmaStength.getCdmaEcio();
 
                 // Get cdma as level 0..4
