@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
- * Hristijan Gjoreski, Daniel Roggen
+ * Hristijan Gjoreski, Daniel Roggen, Clara Wurm
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -19,6 +19,7 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+
 
 package uk.ac.sussex.wear.android.datalogger.bt;
 
@@ -56,12 +57,12 @@ public class BluetoothDeviceListActivity  extends Activity {
     private static final String TAG = BluetoothDeviceListActivity.class.getSimpleName();
 
 
-    /**
+/**
      * Member fields
      */
     private BluetoothAdapter mBtAdapter;
 
-    /**
+/**
      * Newly discovered devices
      */
     private ArrayAdapter<String> mNewDevicesArrayAdapter;
@@ -143,9 +144,10 @@ public class BluetoothDeviceListActivity  extends Activity {
         this.unregisterReceiver(mReceiver);
     }
 
-    /**
+/**
      * Start device discover with the BluetoothAdapter
      */
+
     private void doDiscovery() {
         Log.d(TAG, "doDiscovery()");
 
@@ -165,7 +167,7 @@ public class BluetoothDeviceListActivity  extends Activity {
         mBtAdapter.startDiscovery();
     }
 
-    /**
+/**
      * The on-click listener for all devices in the ListViews
      */
     private AdapterView.OnItemClickListener mDeviceClickListener
@@ -188,7 +190,7 @@ public class BluetoothDeviceListActivity  extends Activity {
         }
     };
 
-    /**
+/**
      * The BroadcastReceiver that listens for discovered devices and changes the title when
      * discovery is finished
      */
@@ -218,3 +220,4 @@ public class BluetoothDeviceListActivity  extends Activity {
     };
 
 }
+

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
- * Hristijan Gjoreski, Daniel Roggen
+ * Hristijan Gjoreski, Daniel Roggen, Clara Wurm
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -22,8 +22,11 @@
 
 package uk.ac.sussex.wear.android.datalogger.collector;
 
+// abstract parent class for various data collectors
 
-public abstract class AbstractDataCollector {
+import android.app.Activity;
+
+public abstract class AbstractDataCollector extends Activity {
 
     protected long mNanosOffset = 0;
     protected String mSensorName;

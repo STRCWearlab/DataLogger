@@ -41,6 +41,10 @@
     <string name="ui_dialog_bluetooth_none_paired">No devices have been paired</string>
     <string name="ui_dialog_bluetooth_none_found">No devices found</string>
     <string name="ui_dialog_bluetooth_scanning">Scanning for devices...</string>
+    <!--BLE support-->
+    <string name="ble_not_supported">BLE not supported on this device.</string>
+    <string name="bt_not_supported">Bluetooth not supported on this device.</string>
+    <string name="bt_not_enabled">Bluetooth is not enabled, turn it on.</string>
 
     <string-array name="ui_bluetooth_list_state">
         <item>not supported</item>
@@ -85,6 +89,27 @@
     <string name="pref_header_sensors">Sensors</string>
     <string name="pref_sensors_title_remoteSync">Enable remote server sync</string>
 
+    <string name="pref_sensors_category_cells">Cellular network recorder</string>
+    <string name="pref_sensors_key_enabled_cells">PREF_SENSORS_ENABLED_CELL_KEY</string>
+    <string name="pref_sensors_title_cells">Enable cells recorder</string>
+    <string name="pref_sensors_title_cells_samplingPeriod">Sampling rate in Hz (1 for default)</string>
+    <string name="pref_sensors_key_samplingPeriod_cells">PREF_SENSORS_SAMPLING_CELL_KEY</string>
+    <string name="pref_sensors_key_sync_cells">PREF_SENSORS_SYNC_CELL_KEY</string>
+
+    <string name="pref_sensors_category_WiFi">WiFi recorder</string>
+    <string name="pref_sensors_key_enabled_WiFi">PREF_SENSORS_ENABLED_WIFI_KEY</string>
+    <string name="pref_sensors_title_WiFi">Enable WiFi recorder</string>
+    <string name="pref_sensors_title_WiFi_samplingPeriod">Sampling rate in Hz (1 for default)</string>
+    <string name="pref_sensors_key_samplingPeriod_WiFi">PREF_SENSORS_SAMPLING_WIFI_KEY</string>
+    <string name="pref_sensors_key_sync_WiFi">PREF_SENSORS_SYNC_WIFI_KEY</string>
+
+    <string name="pref_sensors_category_Bluetooth">Bluetooth recorder</string>
+    <string name="pref_sensors_key_enabled_Bluetooth">PREF_SENSORS_ENABLED_Bluetooth_KEY</string>
+    <string name="pref_sensors_title_Bluetooth">Enable Bluetooth recorder</string>
+    <string name="pref_sensors_title_Bluetooth_samplingPeriod">Sampling rate in Hz (1 for default)</string>
+    <string name="pref_sensors_key_samplingPeriod_Bluetooth">PREF_SENSORS_SAMPLING_Bluetooth_KEY</string>
+    <string name="pref_sensors_key_sync_Bluetooth">PREF_SENSORS_SYNC_Bluetooth_KEY</string>
+
     <string name="pref_sensors_category_accelerometer">Accelerometer</string>
     <string name="pref_sensors_key_enabled_accelerometer">PREF_SENSORS_ENABLED_ACC_KEY</string>
     <string name="pref_sensors_title_accelerometer">Enable accelerometer</string>
@@ -117,13 +142,6 @@
     <string name="pref_sensors_key_enabled_battery">PREF_SENSORS_ENABLED_BAT_KEY</string>
     <string name="pref_sensors_title_battery">Enable battery recorder</string>
     <string name="pref_sensors_key_sync_battery">PREF_SENSORS_SYNC_BAT_KEY</string>
-
-    <string name="pref_sensors_category_cells">Cellular network recorder</string>
-    <string name="pref_sensors_key_enabled_cells">PREF_SENSORS_ENABLED_CELL_KEY</string>
-    <string name="pref_sensors_title_cells">Enable cells recorder</string>
-    <string name="pref_sensors_title_cells_samplingPeriod">Sampling rate in Hz (0 for default)</string>
-    <string name="pref_sensors_key_samplingPeriod_cells">PREF_SENSORS_SAMPLING_CELL_KEY</string>
-    <string name="pref_sensors_key_sync_cells">PREF_SENSORS_SYNC_CELL_KEY</string>
 
     <string name="pref_sensors_category_depr_cells">Cellular network recorder (deprecated)</string>
     <string name="pref_sensors_key_enabled_depr_cells">PREF_SENSORS_ENABLED_DEPR_CELL_KEY</string>
@@ -167,13 +185,6 @@
     <string name="pref_sensors_title_humidity_samplingPeriod">Sampling rate</string>
     <string name="pref_sensors_key_samplingPeriod_humidity">PREF_SENSORS_SAMPLING_HUM_KEY</string>
     <string name="pref_sensors_key_sync_humidity">PREF_SENSORS_SYNC_HUM_KEY</string>
-
-    <string name="pref_sensors_category_WiFi">WiFi recorder</string>
-    <string name="pref_sensors_key_enabled_WiFi">PREF_SENSORS_ENABLED_WIFI_KEY</string>
-    <string name="pref_sensors_title_WiFi">Enable WiFi recorder</string>
-    <string name="pref_sensors_title_WiFi_samplingPeriod">Sampling rate in Hz (1 for default)</string>
-    <string name="pref_sensors_key_samplingPeriod_WiFi">PREF_SENSORS_SAMPLING_WIFI_KEY</string>
-    <string name="pref_sensors_key_sync_WiFi">PREF_SENSORS_SYNC_WIFI_KEY</string>
 
     <string name="pref_sensors_category_orientation">Orientation</string>
     <string name="pref_sensors_key_enabled_orientation">PREF_SENSORS_ENABLED_ORIEN_KEY</string>

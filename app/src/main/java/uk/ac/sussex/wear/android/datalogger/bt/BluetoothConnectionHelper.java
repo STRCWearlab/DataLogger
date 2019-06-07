@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
- * Hristijan Gjoreski, Daniel Roggen
+ * Hristijan Gjoreski, Daniel Roggen, Clara Wurm
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -19,6 +19,7 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+
 
 package uk.ac.sussex.wear.android.datalogger.bt;
 
@@ -91,10 +92,11 @@ public class BluetoothConnectionHelper {
         }
     }
 
-    /**
+/**
      * Start the chat service. Specifically start AcceptThread to begin a
      * session in listening (server) mode. Called by the Activity onResume()
      */
+
     public synchronized void start(int index) {
         Log.d(TAG, "::start Starting bluetooth at index " + index);
 
@@ -144,9 +146,10 @@ public class BluetoothConnectionHelper {
 
     }
 
-    /**
+/**
      * Stop all threads
      */
+
     public synchronized void stop(int index) {
         Log.d(TAG, "::stop Stopping bluetooth slot "+index);
 
@@ -180,11 +183,12 @@ public class BluetoothConnectionHelper {
         setState(STATE_NONE, index);
     }
 
-    /**
+/**
      * Set the current state of the chat connection
      *
      * @param state An integer defining the current connection state
      */
+
     private synchronized void setState(int state, int index) {
         Log.d(TAG, "setState("+index+") " + mStates[index] + " -> " + state);
         mStates[index] = state;
@@ -193,9 +197,10 @@ public class BluetoothConnectionHelper {
         mHandler.obtainMessage(Constants.BLUETOOTH_MESSAGE_STATE_CHANGE, state, index).sendToTarget();
     }
 
-    /**
+/**
      * Return the current connection state.
      */
+
     public synchronized int getState(int index) {
         return mStates[index];
     }
@@ -207,13 +212,13 @@ public class BluetoothConnectionHelper {
         return mConnectedThreads[index].isConnected();
     }
 
-
-    /**
+/**
      * Start the ConnectedThread to begin managing a Bluetooth connection
      *
      * @param socket The BluetoothSocket on which the connection was made
      * @param device The BluetoothDevice that has been connected
      */
+
     public synchronized void connected(BluetoothSocket socket, BluetoothDevice device, int index) {
         Log.d(TAG, "::connected Starting ConnectedThread for bluetooth at index "+index);
 
@@ -268,9 +273,10 @@ public class BluetoothConnectionHelper {
         setState(STATE_CONNECTED, index);
     }
 
-    /**
+/**
      * Indicate that the connection attempt failed and notify the UI Activity.
      */
+
     private synchronized void connectionFailed(int index) {
         // Send a failure message back to the Activity
         Message msg = mHandler.obtainMessage(Constants.BLUETOOTH_MESSAGE_CONNECTION_FAILED, index);
@@ -280,9 +286,10 @@ public class BluetoothConnectionHelper {
         mHandler.sendMessage(msg);
     }
 
-    /**
+/**
      * Indicate that the connection was lost and notify the UI Activity.
      */
+
     private synchronized void connectionLost(int index) {
         // Send the name of the connected device back to the UI Activity
         Message msg = mHandler.obtainMessage(Constants.BLUETOOTH_MESSAGE_CONNECTION_LOST);
@@ -292,11 +299,12 @@ public class BluetoothConnectionHelper {
         mHandler.sendMessage(msg);
     }
 
-    /**
+/**
      * Start the ConnectThread to initiate a connection to a remote device.
      *
      * @param address The address to connect
      */
+
     public synchronized void connect(String address, int index) {
         Log.i(TAG, "::connect Trying to connect to address " + address + ". ");
 
@@ -368,13 +376,13 @@ public class BluetoothConnectionHelper {
         }
     }
 
-
-    /**
+/**
      * Write to the ConnectedThread in an unsynchronized manner
      *
      * @param out The bytes to write
      * @see ConnectedThread#write(byte[])
      */
+
     private void write(byte[] out, int index) {
         Log.d(TAG,"Writing message to "+index);
         // Create temporary object
@@ -389,12 +397,12 @@ public class BluetoothConnectionHelper {
         r.write(out);
     }
 
-
-    /**
+/**
      * This thread runs while listening for incoming connections. It behaves
      * like a server-side client. It runs until a connection is accepted
      * (or until cancelled).
      */
+
     private class AcceptThread extends Thread {
         // The local server socket
         private final BluetoothServerSocket mmServerSocket;
@@ -468,12 +476,12 @@ public class BluetoothConnectionHelper {
         }
     }
 
-
-    /**
+/**
      * This thread runs while attempting to make an outgoing connection
      * with a device. It runs straight through; the connection either
      * succeeds or fails.
      */
+
     private class ConnectThread extends Thread {
         private final BluetoothSocket mmSocket;
         private final BluetoothDevice mmDevice;
@@ -593,10 +601,12 @@ public class BluetoothConnectionHelper {
         }
     }
 
-    /**
+
+/**
      * This thread runs during a connection with a remote device.
      * It handles all incoming and outgoing transmissions.
      */
+
     private class ConnectedThread extends Thread {
         private final BluetoothSocket mmSocket;
         private final InputStream mmInStream;
@@ -669,11 +679,12 @@ public class BluetoothConnectionHelper {
             return mmSocket.isConnected();
         }
 
-        /**
+/**
          * Write to the connected OutStream.
          *
          * @param buffer The bytes to write
          */
+
         public void write(byte[] buffer) {
             try {
 

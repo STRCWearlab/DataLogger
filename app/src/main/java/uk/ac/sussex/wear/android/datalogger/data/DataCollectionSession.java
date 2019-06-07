@@ -28,6 +28,9 @@ import java.util.Date;
 /**
  * Created by fjordonez on 01/10/16.
  */
+
+// class for data collection session
+
 public class DataCollectionSession {
     private Date mStartDate;
     private Date mEndDate;

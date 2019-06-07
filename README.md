@@ -10,13 +10,14 @@ Application features:
   - Environmental sensors data as temperature, light, pressure and humidity;
   - Positioning sensors data such as location and satellites;
   - Networks connectivity data, as network cells and WiFi networks;
+  - Available Bluetooth beacons
   - Battery level
   - Microphone audio
   - Google activity recognition labels
 - Every sensors can be configured in the settings to enable/disable it, set the sampling frequency, the remote upload of its data.
 - Remote upload of data (`PHP_upload_script.txt` contains the PHP code for the server)
 - Multidevice (master-slaves) configuration
-- Bluetooth connection for synchronization among device of time and status (logging/no logging, labels, sublabels)
+- Bluetooth connection for synchronization among devices of time and status (logging/no logging, labels, sublabels)
 - Autostart at boot/reboot
 - Background logging using persistent notification
 - Logging of data on files (a new file is created at regular interval to reduce data loss)
@@ -50,6 +51,27 @@ The remote upload functionality requires to set up the remote address for the up
 ### Permissions
 Due to the changes to the permissions systems in the latest versions of Android, please check and authorize the access to Microphone, 
 Storage, Telephone and Location in the system settings before to use the application.
+
+## User guide
+### Getting started
+- Install the app on a smartphone via apk
+- Make sure ALL permissions are enabled in the system settings for this app
+- Enable Bluetooth, Wifi, Mobile Data and Location sensors of the phone
+
+###  Configuration
+- Start the app
+- Open the settings by entering the setting's password
+- Set the user name, device location (master or slave), maximum log file size and logging time intervals in "General"
+- Set the server address for the file upload in "Synchronisation"
+- Make sure all sensors are enabled
+- Set the sampling rates for the sensors if needed
+
+### Collecting data
+- Connect all slaves to the master if needed
+- Start the data collection by pressing the "OFF" button
+- Data gets now collected until stopping it by pressing "ON"
+- Logs can be labeled for more meta information
+- To upload all log files to the server make sure the phone is connected to a Wifi network and press "Upload"
 
 ## LICENSE
 This application has been developed for research purpose and release under MIT License. The usage of this application in research and publications must be acknowledged by citing the following publication:

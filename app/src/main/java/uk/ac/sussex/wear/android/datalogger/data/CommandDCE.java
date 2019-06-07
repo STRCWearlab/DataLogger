@@ -24,6 +24,8 @@ package uk.ac.sussex.wear.android.datalogger.data;
 
 import java.util.Iterator;
 
+// child class for data collection event commands
+
 public class CommandDCE extends CommandBase {
 
     private boolean mState;

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
- * Hristijan Gjoreski, Daniel Roggen
+ * Hristijan Gjoreski, Daniel Roggen, Clara Wurm
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -29,6 +29,8 @@ import android.support.v7.app.AppCompatActivity;
 /**
  * Created by ThiasTux.
  */
+
+// class for the 'About" Activity screen
 
 public class AboutActivity extends AppCompatActivity {
 

@@ -1,6 +1,6 @@
 <!--
   ~ Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
-  ~ Hristijan Gjoreski, Daniel Roggen
+  ~ Hristijan Gjoreski, Daniel Roggen, Clara Wurm
   ~
   ~ Permission is hereby granted, free of charge, to any person obtaining a copy of
   ~ this software and associated documentation files (the "Software"), to deal in
@@ -61,7 +61,7 @@
     <PreferenceCategory android:title="@string/pref_general_category_log_files" >
 
         <EditTextPreference
-            android:defaultValue="0"
+            android:defaultValue="1000"
             android:inputType="number"
             android:singleLine="true"
             android:key="@string/pref_general_key_log_files_maxSize"

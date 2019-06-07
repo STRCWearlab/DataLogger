@@ -22,6 +22,8 @@
 
 package uk.ac.sussex.wear.android.datalogger.data;
 
+// child class for file upload start command
+
 public class CommandFUS extends CommandBase {
 
     @Override

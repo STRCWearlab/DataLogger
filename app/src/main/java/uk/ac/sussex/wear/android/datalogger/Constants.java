@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
- * Hristijan Gjoreski, Daniel Roggen
+ * Hristijan Gjoreski, Daniel Roggen, Clara Wurm
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -113,6 +113,9 @@ public final class Constants {
 
 
     // Names for each sensor/collector with log files associated
+    public static final String SENSOR_NAME_CELL = "Cells";
+    public static final String SENSOR_NAME_WIFI = "WiFi";
+    public static final String SENSOR_NAME_BLUETOOTH = "Bluetooth";
     public static final String SENSOR_NAME_API_HAR = "API_HAR";
     public static final String SENSOR_NAME_LABELS = "Labels";
     public static final String SENSOR_NAME_ACC = "Accelerometer";
@@ -120,7 +123,7 @@ public final class Constants {
     public static final String SENSOR_NAME_MAG = "Magnetometer";
     public static final String SENSOR_NAME_MIC = "Audio";
     public static final String SENSOR_NAME_BAT = "Battery";
-    public static final String SENSOR_NAME_CELL = "Cells";
+
     public static final String SENSOR_NAME_DEPR_CELL = "DeprCells";
     public static final String SENSOR_NAME_LOC = "Location";
     public static final String SENSOR_NAME_SAT = "GPS";
@@ -128,7 +131,7 @@ public final class Constants {
     public static final String SENSOR_NAME_LT = "Ambient";
     public static final String SENSOR_NAME_PRES = "Pressure";
     public static final String SENSOR_NAME_HUM = "Humidity";
-    public static final String SENSOR_NAME_WIFI = "WiFi";
+
     public static final String SENSOR_NAME_ORIEN = "Orientation";
     public static final String SENSOR_NAME_LIN_ACC = "LinearAcceleration";
     public static final String SENSOR_NAME_GRA = "Gravity";

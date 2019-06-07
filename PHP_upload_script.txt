@@ -1,40 +1,22 @@
 <?php
-foreach ($_FILES["fileToUpload"]["error"] as $key => $error) {
-    if ($error == UPLOAD_ERR_OK) {
-        $tmp_name = $_FILES["fileToUpload"]["tmp_name"][$key];
-        $name = $_FILES["fileToUpload"]["name"][$key];
-        $file_path = "./uploads/";
-        $file_path = $file_path . $name;
-            if(move_uploaded_file($tmp_name, $file_path)) 
-            {
-               echo "OK:".$name."\r\n";
-
-            } else{
-               echo "ERR:".$name."\r\n";
-            }   
-    }
-
-}
-?>
-
-<?php
 $target_dir = "../uploads/";
-foreach ($_FILES["fileToUpload"]["error"] as $key => $error) {
-    $name = $_FILES["fileToUpload"]["name"][$key];
-    if ($error == UPLOAD_ERR_OK) {
-        $tmp_name = $_FILES["fileToUpload"]["tmp_name"][$key];        
-        $target_file = $target_dir . $name;
-        if(move_uploaded_file($tmp_name, $target_file))
-        {
-           echo "OK:".$error.":".$name."\r\n";
-        } else{
-           echo "ERR:UPLOAD_ERR_MOVE:".$name."\r\n";
-        } 
-    } else {
-        echo "ERR:".$error.":".$name."\r\n";
-    }
+foreach ($_FILES as $file) {
+  if ($file['type'] !== 'text/plain' && $file['type'] !== 'video/3gp') {
+    continue; // ignore non text or 3gp files
+  }
+
+  $name = $file['name'];
+  $error = $file['error'];
+
+  if ($error !== UPLOAD_ERR_OK) {
+    echo "ERR:${error}:${name}\r\n";
+    continue;
+  }
+
+  if (move_uploaded_file($file['tmp_name'], $target_dir . $name)) {
+    echo "OK:${error}:${name}\r\n";
+  } else {
+     echo "ERR:UPLOAD_ERR_MOVE:${name}\r\n";
+  }
 }
 ?>
-
-
-

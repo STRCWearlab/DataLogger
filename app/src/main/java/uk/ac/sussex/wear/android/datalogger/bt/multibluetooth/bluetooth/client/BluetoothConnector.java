@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
- * Hristijan Gjoreski, Daniel Roggen
+ * Hristijan Gjoreski, Daniel Roggen, Clara Wurm
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -19,6 +19,7 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+
 
 package uk.ac.sussex.wear.android.datalogger.bt.multibluetooth.bluetooth.client;
 
@@ -44,13 +45,13 @@ public class BluetoothConnector {
     private List<UUID> uuidCandidates;
     private int candidate;
 
-
-    /**
+/**
      * @param device         the device
      * @param secure         if connection should be done via a secure socket
      * @param adapter        the Android BT adapter
      * @param uuid a list of UUIDs. if null or empty, the Serial PP id is used
      */
+
     public BluetoothConnector(BluetoothDevice device, boolean secure, BluetoothAdapter adapter,
                               UUID uuid) {
         this.device = device;
@@ -236,7 +237,7 @@ public class BluetoothConnector {
     public static class FallbackException extends Exception {
 
         /**
-         *
+        *
          */
         private static final long serialVersionUID = 1L;
 

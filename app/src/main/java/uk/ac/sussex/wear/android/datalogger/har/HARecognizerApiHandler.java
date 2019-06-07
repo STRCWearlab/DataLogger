@@ -44,6 +44,8 @@ import java.util.ArrayList;
 import uk.ac.sussex.wear.android.datalogger.Constants;
 import uk.ac.sussex.wear.android.datalogger.log.HARecognizerApiLogger;
 
+// class for using google api client
+
 public class HARecognizerApiHandler implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, ResultCallback<Status> {
 

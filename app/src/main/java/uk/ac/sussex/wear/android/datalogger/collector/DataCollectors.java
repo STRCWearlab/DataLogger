@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
- * Hristijan Gjoreski, Daniel Roggen
+ * Hristijan Gjoreski, Daniel Roggen, Clara Wurm
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import uk.ac.sussex.wear.android.datalogger.Constants;
 import uk.ac.sussex.wear.android.datalogger.SharedPreferencesHelper;
 
+// class for collecting sensor data, includes all sensors to be measured
 
 public class DataCollectors {
 
@@ -59,7 +60,54 @@ public class DataCollectors {
 
         // Initialization of collectors objects array
         mCollectors = new ArrayList<>();
-        
+
+        // Measures the status of the WiFi networks
+        if (SharedPreferencesHelper.isEnabledWiFi(context)){
+            mCollectors.add(new WiFiDataCollector(context, sessionName,
+                    Constants.SENSOR_NAME_WIFI,
+                    SharedPreferencesHelper.getSamplingPeriodWiFiInfo(context),
+                    nanosOffset,
+                    SharedPreferencesHelper.getLogFilesMaxsize(context)));
+        }
+
+        // Measures the status of the cellular network in number of cells and signal strength
+        if (SharedPreferencesHelper.isEnabledCellsInfo(context)){
+            try{
+                mCollectors.add(new CellsInfoDataCollector(context, sessionName,
+                        Constants.SENSOR_NAME_CELL,
+                        SharedPreferencesHelper.getSamplingPeriodCellsInfo(context),
+                        nanosOffset,
+                        SharedPreferencesHelper.getLogFilesMaxsize(context)));
+            } catch (Exception e){
+                Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_CELL + " data collector: " + e.getMessage());
+            }
+        }
+
+        // Measures the status of the Bluetooth networks
+        if (SharedPreferencesHelper.isEnabledBluetooth(context)){
+            try{
+                //PROBLEM
+            mCollectors.add(new BluetoothDataCollector(context, sessionName,
+                    Constants.SENSOR_NAME_BLUETOOTH,
+                    SharedPreferencesHelper.getSamplingPeriodBluetoothInfo(context),
+                    nanosOffset,
+                    SharedPreferencesHelper.getLogFilesMaxsize(context)));
+            } catch (Exception e){
+                Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_BLUETOOTH + " data collector: " + e.getMessage());
+            }
+        }
+
+        // Calls DummyDataCollector
+            try{
+                Log.e(TAG, "Error creating " + "DummyDataCollector" + " test_datacoll");
+                mCollectors.add(new DummyDataCollector(context, sessionName,
+                        "Dummy", 1,
+                        nanosOffset,
+                        SharedPreferencesHelper.getLogFilesMaxsize(context)));
+            } catch (Exception e){
+                Log.e(TAG, "Error creating " + "Dummy" + " data collector: " + e.getMessage());
+            }
+
         // Measures the acceleration force in m/s2 that is applied to a device on all three physical axes (x, y, and z), including the force of gravity.
         // SensorEvent.values[0]	Acceleration force along the x axis (including gravity).
         // SensorEvent.values[1]	Acceleration force along the y axis (including gravity).
@@ -129,19 +177,6 @@ public class DataCollectors {
                     Constants.SENSOR_NAME_BAT,
                     nanosOffset,
                     SharedPreferencesHelper.getLogFilesMaxsize(context)));
-        }
-
-        // Measures the status of the cellular network in number of cells and signal strength
-        if (SharedPreferencesHelper.isEnabledCellsInfo(context)){
-            try{
-                mCollectors.add(new CellsInfoDataCollector(context, sessionName,
-                        Constants.SENSOR_NAME_CELL,
-                        SharedPreferencesHelper.getSamplingPeriodCellsInfo(context),
-                        nanosOffset,
-                        SharedPreferencesHelper.getLogFilesMaxsize(context)));
-            } catch (Exception e){
-                Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_CELL + " data collector: " + e.getMessage());
-            }
         }
 
         // Measures the status of the cellular network in number of cells and signal strength (deprecated version)
@@ -228,15 +263,6 @@ public class DataCollectors {
             }
         }
 
-        // Measures the status of the WiFi networks
-        if (SharedPreferencesHelper.isEnabledWiFi(context)){
-            mCollectors.add(new WiFiDataCollector(context, sessionName,
-                    Constants.SENSOR_NAME_WIFI,
-                    SharedPreferencesHelper.getSamplingPeriodWiFiInfo(context),
-                    nanosOffset,
-                    SharedPreferencesHelper.getLogFilesMaxsize(context)));
-        }
-
         // Measures position of the device relative to the earth's frame of reference (specifically,
         // the magnetic north pole).
         // Sensor type TYPE_ORIENTATION was deprecated in Android 2.2 (API level 8), and this sensor
@@ -256,7 +282,6 @@ public class DataCollectors {
             }
         }
 
-
         // Linear acceleration TYPE_LINEAR_ACCELERATION
         // Measures the acceleration force in m/s2 that is applied to a device on all three physical axes (x, y, and z), excluding the force of gravity.
         // SensorEvent.values[0] Acceleration force along the x axis (excluding gravity). m/s2
@@ -274,7 +299,6 @@ public class DataCollectors {
                 Log.e(TAG, "Error creating " + Constants.SENSOR_NAME_LIN_ACC + " data collector: " + e.getMessage());
             }
         }
-
 
         // Gravity TYPE_GRAVITY
         // Measures the force of gravity in m/s2 that is applied to a device on all three physical axes (x, y, z).
@@ -294,14 +318,15 @@ public class DataCollectors {
             }
         }
 
-
-
         // All data collectors are started
-        for (AbstractDataCollector collector : mCollectors) {
-            Log.i(TAG, "Calling collector " + collector.getSensorName());
-            collector.start();
+        try{
+            for (AbstractDataCollector collector : mCollectors) {
+                Log.i(TAG, "Calling collector " + collector.getSensorName());
+                collector.start();
+            }
+        } catch (Exception e){
+            Log.e(TAG, "Error starting data collector: " + e.getMessage());
         }
-
     }
 
     public void stopDataCollectors() {

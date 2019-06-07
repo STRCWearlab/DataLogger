@@ -34,6 +34,8 @@ import java.util.Date;
 
 import uk.ac.sussex.wear.android.datalogger.log.CustomLogger;
 
+// child class for collecting sensor data
+
 public class SensorDataCollector extends AbstractDataCollector implements SensorEventListener {
 
     private static final String TAG = SensorDataCollector.class.getSimpleName();

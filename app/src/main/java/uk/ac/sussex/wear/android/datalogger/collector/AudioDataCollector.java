@@ -32,6 +32,7 @@ import java.io.IOException;
 import uk.ac.sussex.wear.android.datalogger.db.DataLoggerDataSource;
 import uk.ac.sussex.wear.android.datalogger.log.LoggerHelper;
 
+// child class for collecting audio data of phone's microphone
 
 public class AudioDataCollector extends AbstractDataCollector {
 

@@ -33,6 +33,8 @@ import java.io.IOException;
 
 import uk.ac.sussex.wear.android.datalogger.db.DataLoggerDataSource;
 
+// parent class creating log files
+
 public class CustomLogger {
 
     private static final String TAG = CustomLogger.class.getSimpleName();
@@ -88,6 +90,7 @@ public class CustomLogger {
         try {
             mOutputStream.write(s.getBytes());
         }catch(IOException e){
+
             Log.e(TAG, "::log Error writing in log file "+getBaseFilename());
         }
         if (mMaxSizeKByte>0){

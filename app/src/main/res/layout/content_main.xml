@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
-  ~ Hristijan Gjoreski, Daniel Roggen
+  ~ Hristijan Gjoreski, Daniel Roggen, Clara Wurm
   ~
   ~ Permission is hereby granted, free of charge, to any person obtaining a copy of
   ~ this software and associated documentation files (the "Software"), to deal in
@@ -239,7 +239,8 @@
                 android:layout_height="1dp"
                 android:layout_below="@+id/ui_connectivity_upload_file"
                 android:layout_marginTop="10dp"
-                android:background="@android:color/darker_gray" />/>
+                android:background="@android:color/darker_gray" />
+        />
 
         </RelativeLayout>
 

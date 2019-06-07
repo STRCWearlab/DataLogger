@@ -28,6 +28,8 @@ import java.util.Iterator;
 
 import uk.ac.sussex.wear.android.datalogger.R;
 
+// child class for label annotation event commands
+
 public class CommandLAE extends CommandBase {
 
     private static final String TAG = CommandLAE.class.getSimpleName();

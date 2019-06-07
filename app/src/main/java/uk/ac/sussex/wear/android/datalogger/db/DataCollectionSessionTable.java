@@ -25,6 +25,7 @@ package uk.ac.sussex.wear.android.datalogger.db;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+// class for creating data collection session table
 
 public class DataCollectionSessionTable {
 

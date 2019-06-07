@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
+ * Copyright (c) 2019. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
  * Hristijan Gjoreski, Daniel Roggen, Clara Wurm
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -19,30 +19,41 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+// (c) 2016 youten, http://greety.sakura.ne.jp/redo/
 
 package uk.ac.sussex.wear.android.datalogger.collector;
 
+import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.wifi.ScanResult;
-import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
 
+import uk.ac.sussex.wear.android.datalogger.R;
+import uk.ac.sussex.wear.android.datalogger.collector.BTHelper.DeviceAdapter;
+import uk.ac.sussex.wear.android.datalogger.collector.BTHelper.ScannedDevice;
+import uk.ac.sussex.wear.android.datalogger.log.CustomLogger;
+import android.widget.Toast;
+
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import uk.ac.sussex.wear.android.datalogger.log.CustomLogger;
+// child class for collecting Bluetooth data
+// functionality from iBeaconDetector https://github.com/youten/iBeaconDetector
 
-// child class for collecting wifi data
+/*
+* Created by wurmc
+* */
 
-public class WiFiDataCollector extends AbstractDataCollector {
+public class BluetoothDataCollector extends AbstractDataCollector implements BluetoothAdapter.LeScanCallback{
 
-    private static final String TAG = WiFiDataCollector.class.getSimpleName();
+    private static final String TAG = BluetoothDataCollector.class.getSimpleName();
 
     private CustomLogger logger = null;
 
@@ -50,17 +61,20 @@ public class WiFiDataCollector extends AbstractDataCollector {
 
     private Context mContext;
 
-    // The WiFi manager reference
-    private WifiManager mWifiManager = null;
-
-    // Receiver class for monitoring changes in WiFi states
-    private WiFiInfoReceiver mWiFiInfoReceiver;
-
     // Timer to manage specific sampling rates
     private Handler mTimerHandler = null;
     private Runnable mTimerRunnable = null;
 
-    public WiFiDataCollector(Context context, String sessionName, String sensorName, int samplingPeriodUs, long nanosOffset, int logFileMaxSize) {
+    // Receiver class for monitoring changes in BT states
+    private BluetoothInfoReceiver mBTInfoReceiver;
+
+    //needed Bluetooth variables
+    private BluetoothAdapter mBTAdapter = null;
+    private boolean mIsScanning;
+    private DeviceAdapter mDeviceAdapter;
+
+    @SuppressLint("ServiceCast")
+    public BluetoothDataCollector(Context context, String sessionName, String sensorName, int samplingPeriodUs, long nanosOffset, int logFileMaxSize) {
 
         mSensorName = sensorName;
         String path = sessionName + File.separator + mSensorName + "_" + sessionName;
@@ -68,36 +82,42 @@ public class WiFiDataCollector extends AbstractDataCollector {
         logger = new CustomLogger(context, path, sessionName, mSensorName, "txt", false, mNanosOffset, logFileMaxSize);
 
         mSamplingPeriodUs = samplingPeriodUs;
-
-        mWifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-
         mContext = context;
-
         // Offset to match timestamps both in master and slaves devices
         mNanosOffset = nanosOffset;
+        // call init
+        init();
         if (mSamplingPeriodUs > 0) {
             mTimerHandler = new Handler();
             mTimerRunnable = new Runnable() {
+                // still problems here !!! run() seems to not work properly. Log doesn't get called
+                // no BT txt files are written
                 @Override
                 public void run() {
-                    logWifiInfo(getScanList());
+                    logBluetoothInfo(mDeviceAdapter.getScanList());
                     int millis = 1000 / mSamplingPeriodUs;
                     mTimerHandler.postDelayed(this, millis);
                 }
             };
         } else {
-            mWiFiInfoReceiver = new WiFiInfoReceiver();
+            mBTInfoReceiver = new BluetoothInfoReceiver();
         }
 
     }
 
-    private List<ScanResult> getScanList(){
-        synchronized (this) {
-            return mWifiManager.getScanResults();
+    private void init(){
+        // initialise mBTAdapter
+        mBTAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (mBTAdapter == null) {
+            Toast.makeText(this, R.string.bt_not_supported, Toast.LENGTH_SHORT).show();
+            finish();
+            return;
         }
+
+        mDeviceAdapter = new DeviceAdapter(new ArrayList<ScannedDevice>());
     }
 
-    private void logWifiInfo(List<ScanResult> scanList){
+    private void logBluetoothInfo(List<ScannedDevice> scanList){
         // System local time in millis
         long currentMillis = (new Date()).getTime();
 
@@ -109,70 +129,62 @@ public class WiFiDataCollector extends AbstractDataCollector {
                 + String.format("%s", mNanosOffset) + ";"
                 + scanList.size();
 
-        for (ScanResult scan : scanList){
-
-            // The address of the access point.
-            String BSSID = scan.BSSID;
-
-            // The network name.
-            String SSID = scan.SSID;
-
-            // The detected signal level in dBm, also known as the RSSI.
-            int level = scan.level;
-
-            // The primary 20 MHz frequency (in MHz) of the channel over which the client is communicating with the access point.
-            int frequency = scan.frequency;
-
-            // Describes the authentication, key management, and encryption schemes supported by the access point.
-            String capabilities = scan.capabilities;
+        for (ScannedDevice scan : scanList){
+            // Get BLE Beacon Device Address
+            String address = scan.getDevice().getAddress();
+            // Get BLE Beacon RSSI
+            int rssi = scan.getRssi();
+            // Get BLE Beacon Hex Info out of scanRecord
+            String scanRecord = scan.getScanRecordHexString();
 
             message += ";"
-                    + BSSID + ";"
-                    + SSID + ";"
-                    + level + ";"
-                    + frequency + ";"
-                    + capabilities;
+                    + address + ";"
+                    + rssi + ";"
+                    + scanRecord;
         }
-
+        //message += "Hello";
         logger.log(message);
         logger.log(System.lineSeparator());
     }
-    private class WiFiInfoReceiver extends BroadcastReceiver {
+
+    private class BluetoothInfoReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            logWifiInfo(getScanList());
+            logBluetoothInfo(mDeviceAdapter.getScanList());
         }
     }
 
-
     @Override
-    public void start(){
+    public void start() {
         Log.i(TAG, "start:: Starting listener for sensor: " + getSensorName());
 
-        if (mWiFiInfoReceiver != null){
-            mContext.registerReceiver(mWiFiInfoReceiver,
-                    new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
-        } else {
-            mTimerHandler.postDelayed(mTimerRunnable, 0);
+        // if query from iBeaconDetector
+        if ((mBTAdapter != null) && (!mIsScanning)) {
+            mBTAdapter.startLeScan(this);
+            mIsScanning = true;
         }
+
+        mTimerHandler.postDelayed(mTimerRunnable, 0);
+
         logger.start();
     }
 
     @Override
-    public void stop(){
+    public void stop() {
         Log.i(TAG,"stop:: Stopping listener for sensor " + getSensorName());
 
-        if (mWiFiInfoReceiver != null) {
-            mContext.unregisterReceiver(mWiFiInfoReceiver);
-        } else {
-            mTimerHandler.removeCallbacks(mTimerRunnable);
+        if (mBTAdapter != null) {
+            mBTAdapter.stopLeScan(this);
         }
+        mIsScanning = false;
+
+        mTimerHandler.removeCallbacks(mTimerRunnable);
 
         logger.stop();
     }
 
     @Override
-    public void haltAndRestartLogging(){
+    public void haltAndRestartLogging() {
         logger.stop();
         logger.resetByteCounter();
         logger.start();
@@ -183,4 +195,13 @@ public class WiFiDataCollector extends AbstractDataCollector {
         mNanosOffset = nanosOffset;
     }
 
+    @Override
+    public void onLeScan(final BluetoothDevice newDevice, final int newRssi, final byte[] newScanRecord) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                String summary = mDeviceAdapter.updateDevice(newDevice, newRssi, newScanRecord);
+            }
+        });
+    }
 }

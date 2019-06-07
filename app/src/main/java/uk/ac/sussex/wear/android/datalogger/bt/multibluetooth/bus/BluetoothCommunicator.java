@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
- * Hristijan Gjoreski, Daniel Roggen
+ * Hristijan Gjoreski, Daniel Roggen, Clara Wurm
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -20,11 +20,14 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+
 package uk.ac.sussex.wear.android.datalogger.bt.multibluetooth.bus;
+
 
 /**
  * Created by Rami MARTIN on 13/04/2014.
  */
+
 public class BluetoothCommunicator {
 
     public String mMessageReceive;
@@ -33,3 +36,4 @@ public class BluetoothCommunicator {
         mMessageReceive = messageReceive;
     }
 }
+

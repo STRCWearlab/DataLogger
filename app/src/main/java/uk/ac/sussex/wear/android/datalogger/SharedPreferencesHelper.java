@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
- * Hristijan Gjoreski, Daniel Roggen
+ * Hristijan Gjoreski, Daniel Roggen, Clara Wurm
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -61,7 +61,7 @@ public final class SharedPreferencesHelper {
 
     public static int getLogFilesMaxsize(Context context){
         String value = getSharedPrefsInstance(context).
-                getString(context.getResources().getString(R.string.pref_general_key_log_files_maxSize), "0");
+                getString(context.getResources().getString(R.string.pref_general_key_log_files_maxSize), "1000");
         if (!value.equals("")){
             return Integer.parseInt(value);
         } else {
@@ -93,6 +93,69 @@ public final class SharedPreferencesHelper {
         } else {
             return 0;
         }
+    }
+
+    //SharedPreferences Sensors - Cells network
+    public static boolean isEnabledCellsInfo(Context context){
+        return getSharedPrefsInstance(context)
+                .getBoolean(context.getResources().getString(R.string.pref_sensors_key_enabled_cells), true);
+    }
+
+    public static int getSamplingPeriodCellsInfo(Context context){
+        String value = getSharedPrefsInstance(context)
+                .getString(context.getResources().getString(R.string.pref_sensors_key_samplingPeriod_cells), "1");
+        if (!value.equals("")){
+            return Integer.parseInt(value);
+        } else {
+            return 0;
+        }
+    }
+
+    public static boolean toSyncCellsInfo(Context context){
+        return getSharedPrefsInstance(context)
+                .getBoolean(context.getResources().getString(R.string.pref_sensors_key_sync_cells), true);
+    }
+
+    //SharedPreferences Sensors - WiFi
+    public static boolean isEnabledWiFi(Context context){
+        return getSharedPrefsInstance(context)
+                .getBoolean(context.getResources().getString(R.string.pref_sensors_key_enabled_WiFi), true);
+    }
+
+    public static int getSamplingPeriodWiFiInfo(Context context){
+        String value = getSharedPrefsInstance(context)
+                .getString(context.getResources().getString(R.string.pref_sensors_key_samplingPeriod_WiFi), "1");
+        if (!value.equals("")){
+            return Integer.parseInt(value);
+        } else {
+            return 0;
+        }
+    }
+
+    public static boolean toSyncWiFi(Context context){
+        return getSharedPrefsInstance(context)
+                .getBoolean(context.getResources().getString(R.string.pref_sensors_key_sync_WiFi), true);
+    }
+
+    //SharedPreferences Sensors - Bluetooth
+    public static boolean isEnabledBluetooth(Context context){
+        return getSharedPrefsInstance(context)
+                .getBoolean(context.getResources().getString(R.string.pref_sensors_key_enabled_Bluetooth), true);
+    }
+
+    public static int getSamplingPeriodBluetoothInfo(Context context){
+        String value = getSharedPrefsInstance(context)
+                .getString(context.getResources().getString(R.string.pref_sensors_key_samplingPeriod_Bluetooth), "1");
+        if (!value.equals("")){
+            return Integer.parseInt(value);
+        } else {
+            return 0;
+        }
+    }
+
+    public static boolean toSyncBluetooth(Context context){
+        return getSharedPrefsInstance(context)
+                .getBoolean(context.getResources().getString(R.string.pref_sensors_key_sync_Bluetooth), true);
     }
 
     //SharedPreferences Sensors - Accelerometer
@@ -175,26 +238,7 @@ public final class SharedPreferencesHelper {
                 .getBoolean(context.getResources().getString(R.string.pref_sensors_key_sync_battery), true);
     }
 
-    //SharedPreferences Sensors - Cells network
-    public static boolean isEnabledCellsInfo(Context context){
-        return getSharedPrefsInstance(context)
-                .getBoolean(context.getResources().getString(R.string.pref_sensors_key_enabled_cells), true);
-    }
 
-    public static int getSamplingPeriodCellsInfo(Context context){
-        String value = getSharedPrefsInstance(context)
-                .getString(context.getResources().getString(R.string.pref_sensors_key_samplingPeriod_cells), "1");
-        if (!value.equals("")){
-            return Integer.parseInt(value);
-        } else {
-            return 0;
-        }
-    }
-
-    public static boolean toSyncCellsInfo(Context context){
-        return getSharedPrefsInstance(context)
-                .getBoolean(context.getResources().getString(R.string.pref_sensors_key_sync_cells), true);
-    }
 
     //SharedPreferences Sensors - Cells network (deprecated)
     public static boolean isEnabledDeprCellsInfo(Context context){
@@ -293,26 +337,7 @@ public final class SharedPreferencesHelper {
                 .getBoolean(context.getResources().getString(R.string.pref_sensors_key_sync_humidity), true);
     }
 
-    //SharedPreferences Sensors - WiFi
-    public static boolean isEnabledWiFi(Context context){
-        return getSharedPrefsInstance(context)
-                .getBoolean(context.getResources().getString(R.string.pref_sensors_key_enabled_WiFi), true);
-    }
 
-    public static int getSamplingPeriodWiFiInfo(Context context){
-        String value = getSharedPrefsInstance(context)
-                .getString(context.getResources().getString(R.string.pref_sensors_key_samplingPeriod_WiFi), "1");
-        if (!value.equals("")){
-            return Integer.parseInt(value);
-        } else {
-            return 0;
-        }
-    }
-
-    public static boolean toSyncWiFi(Context context){
-        return getSharedPrefsInstance(context)
-                .getBoolean(context.getResources().getString(R.string.pref_sensors_key_sync_WiFi), true);
-    }
 
     //SharedPreferences Sensors - Orientation
     public static boolean isEnabledOrientation(Context context){
@@ -708,5 +733,4 @@ public final class SharedPreferencesHelper {
                 .putInt(Constants.BLUETOOTH_SLAVES_CONNECTED_KEY, value)
                 .commit();
     }
-
 }

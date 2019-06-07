@@ -34,6 +34,7 @@ import java.util.Date;
 
 import uk.ac.sussex.wear.android.datalogger.log.CustomLogger;
 
+// child class for collecting location data (GPS)
 
 public class LocationDataCollector extends AbstractDataCollector implements LocationListener {
 

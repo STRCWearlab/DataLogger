@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
- * Hristijan Gjoreski, Daniel Roggen
+ * Hristijan Gjoreski, Daniel Roggen, Clara Wurm
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -19,6 +19,7 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+
 
 package uk.ac.sussex.wear.android.datalogger.bt;
 
@@ -45,6 +46,7 @@ import uk.ac.sussex.wear.android.datalogger.data.CommandBase;
  * Created by fjordonez on 27/01/17.
  */
 
+
 public class MultiBluetoothManager {
 
     private static final String TAG = MultiBluetoothManager.class.getSimpleName();
@@ -57,6 +59,7 @@ public class MultiBluetoothManager {
     private final Context mContext;
     private int[] mStates;
     private boolean mIsServer;
+
 
     private BluetoothClient mBluetoothClient;
     private ArrayList<BluetoothServer> mServerConnectedList;
@@ -92,8 +95,7 @@ public class MultiBluetoothManager {
 
     }
 
-
-    /**
+/**
      * Start the ConnectThread to initiate a connection to a remote device.
      *
      * @param address The address to connect
@@ -121,11 +123,10 @@ public class MultiBluetoothManager {
 
     }
 
-
-
-    /**
+/**
      * Indicate that the connection attempt failed and notify the UI Activity.
      */
+
     private void connectionFailed(int index) {
         // Send a failure message back to the Activity
         Message msg = mHandler.obtainMessage(Constants.BLUETOOTH_MESSAGE_CONNECTION_FAILED, index);
@@ -350,3 +351,4 @@ public class MultiBluetoothManager {
     }
 
 }
+

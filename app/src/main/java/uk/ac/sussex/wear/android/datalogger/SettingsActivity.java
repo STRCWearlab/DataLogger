@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2017. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
- * Hristijan Gjoreski, Daniel Roggen
+ * Hristijan Gjoreski, Daniel Roggen, Clara Wurm
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -48,6 +48,9 @@ import java.util.List;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
+
+// child class for 'Settings' Activity screen
+
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
     private static final String TAG = SettingsActivity.class.getSimpleName();
@@ -209,16 +212,19 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines
+            bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sensors_key_samplingPeriod_cells)));
+            bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sensors_key_samplingPeriod_WiFi)));
+            bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sensors_key_samplingPeriod_Bluetooth)));
             bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sensors_key_samplingPeriod_accelerometer)));
             bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sensors_key_samplingPeriod_gyroscope)));
             bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sensors_key_samplingPeriod_magnetometer)));
             bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sensors_key_samplingPeriod_microphone)));
-            bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sensors_key_samplingPeriod_cells)));
+
             bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sensors_key_samplingPeriod_temperature)));
             bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sensors_key_samplingPeriod_light)));
             bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sensors_key_samplingPeriod_pressure)));
             bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sensors_key_samplingPeriod_humidity)));
-            bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sensors_key_samplingPeriod_WiFi)));
+
             bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_sensors_key_samplingPeriod_orientation)));
         }
 

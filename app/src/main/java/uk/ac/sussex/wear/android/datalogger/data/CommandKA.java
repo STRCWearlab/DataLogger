@@ -26,6 +26,8 @@ import java.util.Iterator;
 
 import uk.ac.sussex.wear.android.datalogger.R;
 
+// child class for keep alive commands
+
 public class CommandKA extends CommandBase {
 
     private boolean mDataCollectionState;
