@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2019. Mathias Ciliberto, Francisco Javier Ordoñez Morales,
- * Hristijan Gjoreski, Daniel Roggen
+ * Hristijan Gjoreski, Daniel Roggen, Clara Wurm
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -19,6 +19,7 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+// (c) 2016 youten, http://greety.sakura.ne.jp/redo/
 
 package uk.ac.sussex.wear.android.datalogger.collector;
 
@@ -45,6 +46,10 @@ import java.util.List;
 
 // child class for collecting Bluetooth data
 // functionality from iBeaconDetector https://github.com/youten/iBeaconDetector
+
+/*
+* Created by wurmc
+* */
 
 public class BluetoothDataCollector extends AbstractDataCollector implements BluetoothAdapter.LeScanCallback{
 
